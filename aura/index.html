@@ -1,4 +1,3 @@
-<!-- index.html (Aura Suites Home) -->
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -25,13 +24,12 @@
 </head>
 <body class="bg-cream text-neutral-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Header Navigation Responsive -->
     <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-neutral-soft">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <a href="index.html" class="font-serif-title text-2xl tracking-widest uppercase font-semibold text-neutral-900">AURA</a>
             
             <nav class="hidden lg:flex items-center space-x-6 text-sm tracking-wide font-medium text-neutral-600">
-                <a href="#chi-siamo" class="hover:text-neutral-900 transition">Chi Siamo</a>
+                <a href="index.html#chi-siamo" class="hover:text-neutral-900 transition">Chi Siamo</a>
                 <a href="camere.html" class="hover:text-neutral-900 transition">Camere</a>
                 <a href="wellness.html" class="hover:text-neutral-900 transition">Wellness & Spa</a>
                 <a href="ristorazione.html" class="hover:text-neutral-900 transition">Ristoranti, Bar & Nightlife</a>
@@ -53,7 +51,7 @@
         </div>
 
         <div id="mobile-menu" class="hidden lg:hidden bg-cream border-t border-neutral-200 px-6 py-4 space-y-3">
-            <a href="#chi-siamo" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Chi Siamo</a>
+            <a href="index.html#chi-siamo" onclick="toggleMobileMenu()" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Chi Siamo</a>
             <a href="camere.html" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Camere</a>
             <a href="wellness.html" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Wellness & Spa</a>
             <a href="ristorazione.html" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Ristoranti, Bar & Nightlife</a>
@@ -68,8 +66,6 @@
     </header>
 
     <main class="flex-grow max-w-7xl mx-auto px-6 py-8 w-full space-y-16">
-        
-        <!-- Hero Section -->
         <section class="relative rounded-2xl overflow-hidden shadow-sm border border-neutral-soft bg-sand min-h-[500px] flex items-end p-8 md:p-12">
             <div id="hero-slider" class="absolute inset-0">
                 <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80" class="hero-slider-img active" alt="Aura Suites 1">
@@ -91,13 +87,12 @@
             </div>
         </section>
 
-        <!-- Sezione Chi Siamo & Posizione -->
         <section id="chi-siamo" class="bg-white rounded-2xl p-8 md:p-12 border border-neutral-soft shadow-sm space-y-8">
             <div class="max-w-3xl">
                 <span class="text-xs uppercase tracking-widest text-amber-800 font-semibold">Dal 2018</span>
                 <h2 class="font-serif-title text-3xl md:text-4xl font-light text-neutral-900 mt-1 mb-4">L'Arte dell'Ospitalità Riservata</h2>
                 <p class="text-neutral-600 text-sm md:text-base leading-relaxed">
-                    Fondato nel <strong>2018</strong>, <strong>Aura Suites</strong> nasce dal desiderio di creare un’oasi di totale serenità e riservatezza. Il nostro boutique resort accoglie esclusivamente un pubblico adulto (16+) per garantire un soggiorno all'insegna del relax assoluto, lontano dal caos della vita quotidiana.
+                    Fondato nel <strong>2018</strong>, <strong>Aura Suites</strong> nasce dal desiderio di creare un’oasi di totale serenità e riservatezza. Il nostro boutique resort accoglie esclusivamente un pubblico adulto (16+) per garantire un soggiorno all'insegna del relax assoluto.
                 </p>
             </div>
 
@@ -109,26 +104,23 @@
                         Situato sulla scogliera panoramica di <strong>Taormina (Messina)</strong>, in Via delle Primule 12, a soli 5 minuti a piedi dalla spiaggia privata.
                     </p>
                 </div>
-
                 <div class="space-y-2">
                     <div class="text-2xl">🌿</div>
                     <h3 class="font-serif-title text-xl font-medium text-neutral-900">Filosofia Adults Only</h3>
                     <p class="text-xs text-neutral-500 leading-relaxed">
-                        Ambienti silenziosi, servizi benessere su misura, gastronomia d'eccellenza e nightlife insonorizzata pensati per soddisfare le esigenze di coppie e viaggiatori esperti.
+                        Ambienti silenziosi, servizi benessere su misura, gastronomia d'eccellenza e nightlife insonorizzata pensati per coppie e viaggiatori esperti.
                     </p>
                 </div>
-
                 <div class="space-y-2">
                     <div class="text-2xl">⭐</div>
                     <h3 class="font-serif-title text-xl font-medium text-neutral-900">I Nostri Numeri</h3>
                     <p class="text-xs text-neutral-500 leading-relaxed">
-                        7 tipologie di suite esclusive, 3 ristoranti tematici, 2 bar panoramici, Spa con centro olistico e la discoteca privata <em>Aura Club</em>.
+                        7 tipologie di suite esclusive, 3 ristoranti tematici, 2 bar panoramici, Spa con centro olistico e discoteca privata <em>Aura Club</em>.
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- Banner di reindirizzamento alle Camere -->
         <section class="bg-sand rounded-2xl p-8 border border-neutral-soft flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="space-y-1">
                 <h3 class="font-serif-title text-2xl font-medium text-neutral-900">Scopri le 7 Sistemazioni Esclusive</h3>
@@ -138,7 +130,6 @@
                 Vedi Tutte le Camere
             </a>
         </section>
-
     </main>
 
     <footer class="bg-sand border-t border-neutral-soft py-8 mt-12">
