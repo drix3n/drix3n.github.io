@@ -17,7 +17,7 @@
     --accent-glow: rgba(16, 185, 129, 0.15);
     
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-heading: 'Syne', sans-serif;
+    --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
     
     --max-width: 1100px;
     --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -69,6 +69,7 @@ a {
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-subtle);
     padding: 20px 0;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
 }
 
 .nav-container {
@@ -79,9 +80,9 @@ a {
 
 .brand-logo {
     font-family: var(--font-heading);
-    font-weight: 800;
+    font-weight: 700;
     font-size: 1.25rem;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
 }
 
 .accent-dot {
@@ -141,15 +142,15 @@ a {
 
 .hero-name {
     font-family: var(--font-heading);
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     margin-bottom: 12px;
 }
 
 .hero-role {
-    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
     color: var(--text-muted);
     font-weight: 400;
     margin-bottom: 24px;
@@ -209,7 +210,7 @@ a {
     display: block;
     font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     color: var(--accent);
     font-weight: 500;
     margin-bottom: 12px;
@@ -217,10 +218,10 @@ a {
 
 .section-title {
     font-family: var(--font-heading);
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-size: clamp(2rem, 4vw, 2.6rem);
     font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
 }
 
 /* ==========================================================================
@@ -281,9 +282,10 @@ a {
 
 .project-title {
     font-family: var(--font-heading);
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 12px;
+    letter-spacing: -0.01em;
 }
 
 .project-description {
@@ -378,6 +380,7 @@ a {
     font-family: var(--font-heading);
     font-size: 1.2rem;
     margin-bottom: 24px;
+    letter-spacing: -0.01em;
 }
 
 .skills-columns {
@@ -423,11 +426,12 @@ a {
 
 .contact-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
     font-weight: 700;
     max-width: 650px;
     margin: 12px auto;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
 }
 
 .contact-subtitle {
@@ -446,6 +450,7 @@ a {
     padding-bottom: 4px;
     transition: var(--transition);
     margin-bottom: 60px;
+    letter-spacing: -0.01em;
 }
 
 .contact-email:hover {
@@ -480,6 +485,20 @@ a {
 .copyright {
     font-size: 0.85rem;
     color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Animations (Fade-In JS Integration)
+   ========================================================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ==========================================================================
