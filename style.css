@@ -2,24 +2,24 @@
    Design System & Variable Definitions
    ========================================================================== */
 :root {
-    /* Modalità Scura (Dark Theme - Profondo e Cyberpunk) */
-    --bg-main: #050507;
-    --bg-surface: #0f0f14;
-    --bg-surface-hover: #181822;
+    /* Modalità Chiara (Default) */
+    --bg-main: #F8F9FA;
+    --bg-surface: #FFFFFF;
+    --bg-surface-hover: #F1F5F9;
     
-    --text-primary: #f4f4f6;
-    --text-secondary: #a0a0b0;
-    --text-muted: #626274;
+    --text-primary: #111827;
+    --text-secondary: #6B7280;
+    --text-muted: #9CA3AF;
     
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.2);
+    --border-subtle: #E5E7EB;
+    --border-strong: #D1D5DB;
     
-    --accent: #10b981; /* Verde Smeraldo Neonato */
-    --accent-glow: rgba(16, 185, 129, 0.15);
+    --accent: #2563EB;
+    --accent-glow: rgba(37, 99, 235, 0.12);
     
-    --header-bg: rgba(5, 5, 7, 0.85);
-    --toggle-bg: #181822;
-    --toggle-ball: #10b981;
+    --header-bg: rgba(248, 249, 250, 0.88);
+    --toggle-bg: #E5E7EB;
+    --toggle-ball: #2563EB;
     
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -28,25 +28,25 @@
     --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Modalità Chiara (Light Theme - Calda, Editoriale e Luminosa) */
-[data-theme="light"] {
-    --bg-main: #fcfbf9;
-    --bg-surface: #ffffff;
-    --bg-surface-hover: #f3f1ec;
+/* Modalità Scura */
+[data-theme="dark"] {
+    --bg-main: #0F172A;
+    --bg-surface: #1E293B;
+    --bg-surface-hover: #334155;
     
-    --text-primary: #18181b;
-    --text-secondary: #52525b;
-    --text-muted: #71717a;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
     
-    --border-subtle: rgba(24, 24, 27, 0.1);
-    --border-strong: rgba(24, 24, 27, 0.25);
+    --border-subtle: #334155;
+    --border-strong: #475569;
     
-    --accent: #2563eb; /* Blu Elettrico / Editoriale */
-    --accent-glow: rgba(37, 99, 235, 0.12);
+    --accent: #60A5FA;
+    --accent-glow: rgba(96, 165, 250, 0.15);
     
-    --header-bg: rgba(252, 251, 249, 0.88);
-    --toggle-bg: #e4e4e7;
-    --toggle-ball: #2563eb;
+    --header-bg: rgba(15, 23, 42, 0.85);
+    --toggle-bg: #334155;
+    --toggle-ball: #60A5FA;
 }
 
 /* ==========================================================================
@@ -177,8 +177,8 @@ a {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-/* Spostamento pallina in Modalità Chiara */
-[data-theme="light"] .theme-ball {
+/* Spostamento pallina in Modalità Scura */
+[data-theme="dark"] .theme-ball {
     transform: translateX(28px);
 }
 
