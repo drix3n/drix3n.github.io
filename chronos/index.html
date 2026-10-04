@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronos — Studio sulla percezione del tempo</title>
+  
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+  <div id="cursor"></div>
+
+  <canvas id="webgl-canvas"></canvas>
+
+  <div class="app-layout">
+    
+    <header class="header-nav">
+      <div class="brand" id="btn-logo">
+        <span class="logo">Chronos</span>
+        <span class="sub-logo" data-i18n="subLogo">STUDIO SULLA PERCEZIONE DEL TEMPO</span>
+      </div>
+      <nav class="top-menu">
+        <span class="menu-item active" id="btn-atlas" data-i18n="menuAtlas">01 / ATLANTE</span>
+        <span class="menu-item btn-trigger" id="btn-useless" data-i18n="menuBtn">IL BOTTONE INUTILE ↗</span>
+        <span class="menu-item lang-switch" id="lang-btn"><span id="lang-it" class="active-lang">IT</span> / <span id="lang-en">EN</span></span>
+        <span class="status-dot"></span>
+      </nav>
+    </header>
+
+    <aside class="col-left">
+      <div class="editorial-block">
+        <span class="kicker" data-i18n="kicker">NON MISURARLO. ABITALO.</span>
+        <h1 class="main-headline" data-i18n="mainTitle">Il tempo non è una linea.</h1>
+        <p class="headline-sub" data-i18n="mainSub">È materia che cambia forma. Un'orbita. Ventiquattro ore. Nessuna direzione obbligata.</p>
+      </div>
+
+      <div class="active-section-card">
+        <span class="card-kicker" id="section-kicker">ADESSO / SEZIONE 17</span>
+        <h2 class="card-title" id="section-title">Dilatazione</h2>
+        <div class="card-divider"></div>
+        <p class="card-desc" id="section-desc">Ci sono minuti che contengono un'intera giornata.</p>
+        <a href="#" class="card-link" id="section-link" data-i18n="enterHour">ENTRA NELL'ORA ↗</a>
+      </div>
+    </aside>
+
+    <div class="col-center">
+      <div class="object-badge" data-i18n="objectBadge">OGGETTO TEMPORALE / 001</div>
+      <div class="orbit-hint" data-i18n="orbitHint">TRASCINA PER ORBITARE — 360°</div>
+    </div>
+
+    <aside class="col-right">
+      <div class="index-header"><span data-i18n="indexHeader">INDICE / 24 SEZIONI</span> <span class="arrow-down">↓</span></div>
+      <ul class="index-list" id="index-list"></ul>
+      <div class="index-footer-note" data-i18n="indexNote">UN GIORNO. VENTIQUATTRO MODI DI SENTIRLO.</div>
+    </aside>
+
+    <div class="mid-bar">
+      <div class="mid-cell" data-i18n="midRotate">← RUOTA L'OGGETTO PER CAMBIARE SEZIONE</div>
+      <div class="mid-cell" data-i18n="midSpecs">24 SEZIONI / 15° PER ORA</div>
+      <div class="mid-cell" data-i18n="midDeform">IL MOVIMENTO DEFORMA LA MATERIA</div>
+      <div class="mid-cell text-right"><span class="status-dot"></span></div>
+    </div>
+
+    <footer class="bottom-telemetry">
+      <div class="telemetry-col">
+        <span class="telemetry-label" data-i18n="clockLabel">ORA LOCALE / ROMA — UTC+02</span>
+        <span class="telemetry-val" id="clock-val">17:42:08</span>
+      </div>
+      <div class="telemetry-col">
+        <span class="telemetry-label"><span data-i18n="speedLabel">VELOCITÀ DEL MOUSE</span> / <span id="speed-val">0.18 M/S</span></span>
+        <div class="sparkline-bar" id="sparkline"></div>
+      </div>
+      <div class="telemetry-col">
+        <span class="telemetry-label"><span data-i18n="soundLabel">SUONO PROCEDURALE</span> / <span id="freq-val">174 HZ</span></span>
+        <div class="wave-container">
+          <svg viewBox="0 0 100 20" class="wave-svg">
+            <path d="M0,10 Q25,0 50,10 T100,10" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span class="audio-toggle" id="audio-toggle" data-i18n="audioMute">⊙ MUTO</span>
+        </div>
+      </div>
+      <div class="telemetry-col">
+        <span class="telemetry-label" data-i18n="spectrumLabel">SPETTRO LOCALE / 17-18</span>
+        <div class="color-swatch-block">
+          <span class="swatch-box"></span>
+          <span class="swatch-code">#D7FF3F</span>
+        </div>
+      </div>
+      <div class="telemetry-col text-right">
+        <span class="telemetry-label" data-i18n="noScroll">ESPERIENZA SENZA SCROLL</span>
+        <span class="telemetry-sub" data-i18n="conceptStatus">CONCEPT / STATO STATICO</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Modale Dettaglio Ora ("Entra nell'Ora") -->
+  <div id="modal-hour" class="modal-overlay">
+    <div class="modal-content">
+      <span class="modal-close" id="modal-close">✕</span>
+      <span class="modal-kicker" id="modal-kicker">ADESSO / SEZIONE 17</span>
+      <h2 class="modal-title" id="modal-title">Dilatazione</h2>
+      <p class="modal-body" id="modal-body"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
