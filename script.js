@@ -1,6 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* 1. Animazione Ingresso (Fade-In con Stagger Effect) */
+    /* 1. Gestione Tema Chiaro / Scuro (Dark/Light Mode) */
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // Controllo del tema salvato nel LocalStorage o preferenza del sistema
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+
+    if (savedTheme === 'light' || (!savedTheme && systemPrefersLight)) {
+        htmlElement.setAttribute('data-theme', 'light');
+    } else {
+        htmlElement.setAttribute('data-theme', 'dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    /* 2. Animazione Ingresso (Fade-In con Stagger Effect) */
     const fadeItems = document.querySelectorAll('.project-item, .about-content, .contact-card, .hero-content > *');
 
     const observerOptions = {
@@ -24,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(item);
     });
 
-    /* 2. Navbar Intelligente (Nascondi allo Scroll Down, Mostra allo Scroll Up) */
+    /* 3. Navbar Intelligente (Nascondi allo Scroll Down, Mostra allo Scroll Up) */
     let lastScroll = 0;
     const header = document.querySelector('.header');
 
@@ -44,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lastScroll = currentScroll;
     });
 
-    /* 3. Transizione Smooth per i link ancorati */
+    /* 4. Transizione Smooth per i link ancorati */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
