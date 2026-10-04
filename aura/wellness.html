@@ -1,0 +1,112 @@
+<!-- wellness.html -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellness & Spa - Aura Suites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-cream text-neutral-800 antialiased min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-50 bg-cream/90 backdrop-blur-md border-b border-neutral-soft">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" class="font-serif-title text-2xl tracking-widest uppercase font-semibold text-neutral-900">AURA</a>
+            <nav class="hidden md:flex items-center space-x-6 text-sm tracking-wide font-medium text-neutral-600">
+                <a href="index.html#camere" class="hover:text-neutral-900 transition">Camere</a>
+                <a href="wellness.html" class="text-neutral-900 font-semibold transition">Wellness & Spa</a>
+                <a href="ristorazione.html" class="hover:text-neutral-900 transition">Ristoranti & Bar</a>
+                <a href="escursioni.html" class="hover:text-neutral-900 transition">Escursioni</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <span class="text-[10px] uppercase tracking-wider bg-sand px-3 py-1 rounded-full border border-neutral-soft font-semibold text-neutral-600">Adults Only 16+</span>
+                <a href="prenotazione.html" class="bg-stone-dark text-white px-5 py-2.5 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-neutral-800 transition">
+                    Prenota Ora
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-8 w-full space-y-12">
+        <div class="border-b border-neutral-soft pb-4">
+            <h1 class="font-serif-title text-4xl font-light text-neutral-900">Area Wellness & Spa</h1>
+            <p class="text-neutral-500 text-sm mt-1">Clicca sull'immagine di ciascun servizio per visualizzare informazioni e scheda dettagliata.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Palestra -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition">
+                <div class="relative h-64 overflow-hidden group cursor-pointer" onclick="openModal('palestra')">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Palestra">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition"></div>
+                    <span class="absolute bottom-4 left-4 bg-white/90 text-neutral-900 font-semibold text-xs px-3 py-1.5 rounded-full">🔍 Clicca per Dettagli & Orari</span>
+                </div>
+                <div class="p-6 space-y-2">
+                    <h3 class="font-serif-title text-2xl font-medium">Palestra Equipaggiata Technogym</h3>
+                    <p class="text-xs text-neutral-500">Attrezzature all'avanguardia e area cardio panoramica. Incluso in All Inclusive o €25 al giorno.</p>
+                </div>
+            </div>
+
+            <!-- Stanza Massaggi -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition">
+                <div class="relative h-64 overflow-hidden group cursor-pointer" onclick="openModal('massaggi')">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Stanza Massaggi">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition"></div>
+                    <span class="absolute bottom-4 left-4 bg-white/90 text-neutral-900 font-semibold text-xs px-3 py-1.5 rounded-full">🔍 Clicca per Trattamenti & Prezzi</span>
+                </div>
+                <div class="p-6 space-y-2">
+                    <h3 class="font-serif-title text-2xl font-medium">Stanza Massaggi Olistici</h3>
+                    <p class="text-xs text-neutral-500">Massaggi svedesi, decontratturanti e oli essenziali. 1 trattamento/giorno in All Inclusive o €60 singolo.</p>
+                </div>
+            </div>
+
+            <!-- Sauna -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition">
+                <div class="relative h-64 overflow-hidden group cursor-pointer" onclick="openModal('sauna')">
+                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Sauna">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition"></div>
+                    <span class="absolute bottom-4 left-4 bg-white/90 text-neutral-900 font-semibold text-xs px-3 py-1.5 rounded-full">🔍 Clicca per Info Sauna</span>
+                </div>
+                <div class="p-6 space-y-2">
+                    <h3 class="font-serif-title text-2xl font-medium">Sauna Finlandese & Bagno Turco</h3>
+                    <p class="text-xs text-neutral-500">Aromaterapia in legno di pino nordico. Gratuito in All Inclusive o €35 per percorso Spa.</p>
+                </div>
+            </div>
+
+            <!-- Jacuzzi (Nuova Foto) -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition">
+                <div class="relative h-64 overflow-hidden group cursor-pointer" onclick="openModal('jacuzzi')">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Jacuzzi Nuova Foto">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition"></div>
+                    <span class="absolute bottom-4 left-4 bg-white/90 text-neutral-900 font-semibold text-xs px-3 py-1.5 rounded-full">🔍 Clicca per Info Jacuzzi</span>
+                </div>
+                <div class="p-6 space-y-2">
+                    <h3 class="font-serif-title text-2xl font-medium">Jacuzzi Panoramica Riscaldata</h3>
+                    <p class="text-xs text-neutral-500">Idromassaggio all'aperto vista mare. Incluso in All Inclusive o €30 al giorno.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Dettagli -->
+    <div id="info-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-xl border border-neutral-soft max-h-[85vh] overflow-y-auto">
+            <h2 id="modal-title" class="font-serif-title text-3xl text-neutral-900"></h2>
+            <div id="modal-content" class="text-xs text-neutral-600 leading-relaxed space-y-2"></div>
+            <div class="pt-4 border-t border-neutral-200 flex justify-end">
+                <button onclick="closeModal()" class="bg-stone-dark text-white px-5 py-2.5 rounded-xl text-xs uppercase font-semibold">Chiudi</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-sand border-t border-neutral-soft py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-neutral-500">
+            © 2026 Aura Suites. Tutti i diritti riservati.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
