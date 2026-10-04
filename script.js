@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* 1. Animazione Ingresso (Fade-In con Stagger Effect) */
-    const fadeItems = document.querySelectorAll('.fade-in, .project-item, .hero-content > *');
+    const fadeItems = document.querySelectorAll('.project-item, .about-content, .contact-card, .hero-content > *');
 
     const observerOptions = {
         threshold: 0.15,
@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                // Applica un micro-ritardo progressivo per un ingresso naturale
                 setTimeout(() => {
                     entry.target.classList.add('show');
                 }, index * 80);
@@ -38,10 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (currentScroll > lastScroll && currentScroll > 100) {
-            // Scroll verso il basso -> Nascondi
             header.style.transform = 'translateY(-100%)';
         } else {
-            // Scroll verso l'alto -> Mostra
             header.style.transform = 'translateY(0)';
         }
         lastScroll = currentScroll;
