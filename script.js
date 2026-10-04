@@ -1,23 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* 1. Gestione Tema Chiaro / Scuro (Dark/Light Mode) */
+    /* 1. Gestione Tema Chiaro / Scuro con Memorizzazione Persistente (LocalStorage) */
     const themeToggleBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
-    // Controllo del tema salvato nel LocalStorage o preferenza del sistema
+    // Recupera la scelta salvata in precedenza o rileva la preferenza di sistema del dispositivo
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    if (savedTheme === 'light' || (!savedTheme && systemPrefersLight)) {
-        htmlElement.setAttribute('data-theme', 'light');
-    } else {
+    if (savedTheme) {
+        // Se l'utente ha già selezionato un tema nel sito, applicalo
+        htmlElement.setAttribute('data-theme', savedTheme);
+    } else if (systemPrefersDark) {
+        // Se non c't'è una preferenza salvata, controlla il tema del sistema operativo
         htmlElement.setAttribute('data-theme', 'dark');
+    } else {
+        // Predefinito: Tema Chiaro
+        htmlElement.setAttribute('data-theme', 'light');
     }
 
+    // Toggle al click del pulsante Sole/Luna
     themeToggleBtn.addEventListener('click', () => {
         const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
+        // Imposta il nuovo tema sul DOM e salvalo permanentemente nel browser
         htmlElement.setAttribute('data-theme', newTheme);
         localStorage.setItem('theme', newTheme);
     });
