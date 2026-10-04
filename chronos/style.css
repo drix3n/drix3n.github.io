@@ -25,9 +25,9 @@ html, body {
   font-size: 11px;
   line-height: 1.4;
   letter-spacing: 0.05em;
-  touch-action: none; /* Impedisce il rimbalzo scroll nativo su mobile */
 }
 
+/* Canvas sfondato su Desktop */
 #webgl-canvas {
   position: fixed;
   top: 0;
@@ -35,7 +35,11 @@ html, body {
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  pointer-events: none; /* Permette al touch/mouse di passare all'app senza blocchi */
+  pointer-events: auto; /* Permette l'interazione diretta */
+  touch-action: none;   /* Blocca lo scroll nativo del browser durante il drag */
+  background: transparent;
+  outline: none;
+  border: none;
 }
 
 #cursor {
@@ -66,6 +70,11 @@ html, body {
   grid-template-columns: 320px 1fr 240px;
   grid-template-rows: 60px 1fr 32px 70px;
   padding: 0 1.5rem;
+  pointer-events: none; /* Lascia passare i clic al canvas dove non ci sono testi */
+}
+
+.app-layout * {
+  pointer-events: auto; /* Riattiva l'interattività sugli elementi di testo/bottoni */
 }
 
 .header-nav {
@@ -212,6 +221,7 @@ html, body {
   align-items: center;
   padding: 2rem 0;
   pointer-events: none;
+  position: relative;
 }
 
 .col-right {
@@ -354,49 +364,173 @@ html, body {
   cursor: pointer;
 }
 
-/* --- RESPONSIVE PER TABLET (iPad Pro / iPad Air / Android Tablet) --- */
-@media (max-width: 1024px) {
+/* --- REGOLE SPECIFICHE PER DISPOSITIVI TOUCH / TABLET / MOBILE --- */
+@media (pointer: coarse), (max-width: 1024px) {
   #cursor {
-    display: none; /* Nasconde il cursore custom sui dispositivi touch */
+    display: none !important;
   }
 
   * {
     cursor: auto !important;
   }
 
+  html, body {
+    overflow-y: auto !important;
+  }
+}
+
+/* --- TOUCH PORTRAIT (VERTICALE) --- */
+@media (pointer: coarse) and (orientation: portrait), (max-width: 1024px) and (orientation: portrait) {
   .app-layout {
-    grid-template-columns: 280px 1fr 200px;
-    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+    gap: 1.2rem;
+  }
+
+  .header-nav {
+    order: 1;
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 0.8rem;
+  }
+
+  .col-left {
+    order: 2;
+    padding: 0;
+    gap: 1.5rem;
+  }
+
+  .col-center {
+    order: 3;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+    margin: 0;
+  }
+
+  #webgl-canvas {
+    position: relative !important;
+    width: 260px !important;
+    height: 260px !important;
+    margin: 0 auto;
+    display: block;
+    z-index: 100;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+  }
+
+  .col-right {
+    order: 4;
+    border-left: none;
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+    padding: 1rem 0;
+    max-height: 180px;
+  }
+
+  .mid-bar {
+    order: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border: none;
+    text-align: center;
+  }
+
+  .bottom-telemetry {
+    order: 6;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-dark);
   }
 
   .main-headline {
     font-size: 2.6rem;
   }
+}
 
-  .mid-bar {
-    grid-template-columns: 280px 1fr 200px;
+/* --- TOUCH LANDSCAPE (ORIZZONTALE) --- */
+@media (pointer: coarse) and (orientation: landscape), (max-width: 1366px) and (orientation: landscape) {
+  .app-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr 220px;
+    grid-template-rows: auto 1fr auto;
+    height: auto;
+    min-height: 100vh;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .header-nav {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .col-left {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 1rem 0;
+  }
+
+  .col-center {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
   }
 
   #webgl-canvas {
-    opacity: 0.6; /* Un po' più opaco per far risaltare il testo */
+    position: relative !important;
+    width: 220px !important;
+    height: 220px !important;
+    margin: 0 auto;
+    display: block;
+    z-index: 100;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    touch-action: none !important;
+  }
+
+  .col-right {
+    grid-column: 3;
+    grid-row: 2;
+    padding: 1rem 0 1rem 1rem;
+  }
+
+  .mid-bar {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    padding: 0.5rem 0;
+  }
+
+  .bottom-telemetry {
+    display: none;
+  }
+
+  .main-headline {
+    font-size: 2.2rem;
+  }
+
+  .card-title {
+    font-size: 1.6rem;
   }
 }
 
-/* --- RESPONSIVE PER MOBILE --- */
-@media (max-width: 768px) {
-  .app-layout {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    padding: 1rem;
-    overflow-y: auto;
-    gap: 1.5rem;
-  }
-
-  #webgl-canvas {
-    opacity: 0.35; /* Sfera 3D visibile in sottofondo al testo */
-  }
-
+/* --- MOBILE PORTRAIT --- */
+@media (max-width: 768px) and (orientation: portrait) {
   .header-nav {
     flex-direction: column;
     align-items: flex-start;
@@ -413,40 +547,7 @@ html, body {
     display: none;
   }
 
-  .col-left {
-    padding: 0;
-    gap: 1.5rem;
-  }
-
   .main-headline {
     font-size: 2.2rem;
-  }
-
-  .col-center {
-    display: none;
-  }
-
-  .col-right {
-    border-left: none;
-    border-top: 1px solid var(--border-dark);
-    border-bottom: 1px solid var(--border-dark);
-    padding: 1rem 0;
-    max-height: 160px;
-  }
-
-  .mid-bar {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    border: none;
-    text-align: center;
-  }
-
-  .bottom-telemetry {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border-dark);
   }
 }
