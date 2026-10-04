@@ -126,19 +126,17 @@ function setLanguage(lang) {
     if (dict[key]) el.innerText = dict[key];
   });
 
-  updateAudioButtonsUI();
+  updateAudioButtonUI();
   renderIndexList();
   updateSectionDataUI(activeIndex);
 }
 
-function updateAudioButtonsUI() {
+function updateAudioButtonUI() {
   const dict = i18n[currentLang];
-  const btnText = (audioCtx && audioCtx.state === 'running') ? dict.audioActive : dict.audioMute;
-  
-  const b1 = document.getElementById('audio-toggle');
-  const b2 = document.getElementById('audio-toggle-top');
-  if (b1) b1.innerText = btnText;
-  if (b2) b2.innerText = btnText;
+  const btn = document.getElementById('audio-toggle');
+  if (btn) {
+    btn.innerText = (audioCtx && audioCtx.state === 'running') ? dict.audioActive : dict.audioMute;
+  }
 }
 
 function renderIndexList() {
@@ -348,10 +346,8 @@ function initInteractions() {
     el.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hovered'));
   });
 
-  const btnAudio1 = document.getElementById('audio-toggle');
-  const btnAudio2 = document.getElementById('audio-toggle-top');
-  if (btnAudio1) btnAudio1.addEventListener('click', toggleAudio);
-  if (btnAudio2) btnAudio2.addEventListener('click', toggleAudio);
+  const btnAudio = document.getElementById('audio-toggle');
+  if (btnAudio) btnAudio.addEventListener('click', toggleAudio);
 
   document.getElementById('lang-btn').addEventListener('click', () => setLanguage(currentLang === 'it' ? 'en' : 'it'));
   
@@ -447,7 +443,7 @@ function toggleAudio() {
   } else {
     audioCtx.suspend();
   }
-  updateAudioButtonsUI();
+  updateAudioButtonUI();
 }
 
 function updateClock() {
