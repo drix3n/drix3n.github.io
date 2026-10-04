@@ -1,18 +1,66 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const fadeItems = document.querySelectorAll('.fade-in');
+
+    /* 1. Animazione Ingresso (Fade-In con Stagger Effect) */
+    const fadeItems = document.querySelectorAll('.fade-in, .project-item, .hero-content > *');
+
+    const observerOptions = {
+        threshold: 0.15,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('show');
+                // Applica un micro-ritardo progressivo per un ingresso naturale
+                setTimeout(() => {
+                    entry.target.classList.add('show');
+                }, index * 80);
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.2
-    });
+    }, observerOptions);
 
     fadeItems.forEach(item => {
+        item.classList.add('fade-in');
         observer.observe(item);
+    });
+
+    /* 2. Navbar Intelligente (Nascondi allo Scroll Down, Mostra allo Scroll Up) */
+    let lastScroll = 0;
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll <= 0) {
+            header.style.transform = 'translateY(0)';
+            return;
+        }
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scroll verso il basso -> Nascondi
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            // Scroll verso l'alto -> Mostra
+            header.style.transform = 'translateY(0)';
+        }
+        lastScroll = currentScroll;
+    });
+
+    /* 3. Transizione Smooth per i link ancorati */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
 });
