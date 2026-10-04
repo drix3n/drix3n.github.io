@@ -1,4 +1,3 @@
-// Traduzioni IT / EN
 const i18n = {
   it: {
     subLogo: "STUDIO SULLA PERCEZIONE DEL TEMPO",
@@ -32,7 +31,7 @@ const i18n = {
       { num: "03", name: "Insonnia", desc: "Ore che si dilatano mentre la mente rincorre pensieri in circolo." },
       { num: "04", name: "Attesa", desc: "La sospensione del tempo prima di un evento decisivo." },
       { num: "05", name: "Presagio", desc: "L'intuizione del futuro che si manifesta in un istante impercettibile." },
-      { num: "06", name: "Risveglio", desc: "Il riallineamento dei sensi con il ritmo del mondo esterno." },
+      { num: "06", name: "Risveglio", desc: "Il riallineamento dei senses con il ritmo del mondo esterno." },
       { num: "07", name: "Slancio", desc: "L'accelerazione dell'azione che liquida ogni esitazione." },
       { num: "08", name: "Ritmo", desc: "La cadenza costante del battito e della respirazione sincronizzata." },
       { num: "09", name: "Traiettoria", desc: "Il percorso vettoriale verso una destinazione definita." },
@@ -108,7 +107,7 @@ const i18n = {
 
 let currentLang = 'it';
 let activeIndex = 17;
-let isTimeFrozen = false; // Flag per congelare l'avanzamento automatico e le rotazioni
+let isTimeFrozen = false;
 let scene, camera, renderer, networkGroup, nodesMesh, linesMesh, positions, colors, nodeCount = 180;
 let isDragging = false;
 let previousPointer = { x: 0, y: 0 };
@@ -127,15 +126,19 @@ function setLanguage(lang) {
     if (dict[key]) el.innerText = dict[key];
   });
 
-  const audioToggle = document.getElementById('audio-toggle');
-  if (audioCtx && audioCtx.state === 'running') {
-    audioToggle.innerText = dict.audioActive;
-  } else {
-    audioToggle.innerText = dict.audioMute;
-  }
-
+  updateAudioButtonsUI();
   renderIndexList();
   updateSectionDataUI(activeIndex);
+}
+
+function updateAudioButtonsUI() {
+  const dict = i18n[currentLang];
+  const btnText = (audioCtx && audioCtx.state === 'running') ? dict.audioActive : dict.audioMute;
+  
+  const b1 = document.getElementById('audio-toggle');
+  const b2 = document.getElementById('audio-toggle-top');
+  if (b1) b1.innerText = btnText;
+  if (b2) b2.innerText = btnText;
 }
 
 function renderIndexList() {
@@ -340,12 +343,16 @@ function initInteractions() {
 
   window.addEventListener('touchend', () => { isDragging = false; });
 
-  document.querySelectorAll('a, button, .menu-item, .index-item, .lang-switch, .brand, .card-link').forEach(el => {
+  document.querySelectorAll('a, button, .menu-item, .index-item, .lang-switch, .brand, .card-link, .audio-toggle').forEach(el => {
     el.addEventListener('mouseenter', () => cursor && cursor.classList.add('hovered'));
     el.addEventListener('mouseleave', () => cursor && cursor.classList.remove('hovered'));
   });
 
-  document.getElementById('audio-toggle').addEventListener('click', toggleAudio);
+  const btnAudio1 = document.getElementById('audio-toggle');
+  const btnAudio2 = document.getElementById('audio-toggle-top');
+  if (btnAudio1) btnAudio1.addEventListener('click', toggleAudio);
+  if (btnAudio2) btnAudio2.addEventListener('click', toggleAudio);
+
   document.getElementById('lang-btn').addEventListener('click', () => setLanguage(currentLang === 'it' ? 'en' : 'it'));
   
   document.getElementById('btn-logo').addEventListener('click', () => {
@@ -389,9 +396,8 @@ function triggerUselessPulse() {
   }
 }
 
-// Congela il tempo ed esegue il blocco dell'indice all'apertura del modale
 function openModal() {
-  isTimeFrozen = true; // Attiva il congelamento dell'avanzamento
+  isTimeFrozen = true;
   const modal = document.getElementById('modal-hour');
   const dict = i18n[currentLang];
   const sec = dict.sections[activeIndex];
@@ -403,9 +409,8 @@ function openModal() {
   modal.classList.add('open');
 }
 
-// Scongela il tempo alla chiusura del modale
 function closeModal() {
-  isTimeFrozen = false; // Disattiva il congelamento
+  isTimeFrozen = false;
   document.getElementById('modal-hour').classList.remove('open');
 }
 
@@ -425,9 +430,6 @@ function updateSparkline(val) {
 }
 
 function toggleAudio() {
-  const dict = i18n[currentLang];
-  const audioToggle = document.getElementById('audio-toggle');
-
   if (!audioCtx) {
     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     osc = audioCtx.createOscillator();
@@ -435,20 +437,17 @@ function toggleAudio() {
 
     osc.type = 'sine';
     osc.frequency.setValueAtTime(120 + activeIndex * 18, audioCtx.currentTime);
-    gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
+    gainNode.gain.setValueAtTime(0.18, audioCtx.currentTime);
 
     osc.connect(gainNode);
     gainNode.connect(audioCtx.destination);
     osc.start();
-
-    audioToggle.innerText = dict.audioActive;
   } else if (audioCtx.state === 'suspended') {
     audioCtx.resume();
-    audioToggle.innerText = dict.audioActive;
   } else {
     audioCtx.suspend();
-    audioToggle.innerText = dict.audioMute;
   }
+  updateAudioButtonsUI();
 }
 
 function updateClock() {
@@ -459,7 +458,6 @@ function updateClock() {
 function animate() {
   requestAnimationFrame(animate);
 
-  // La rotazione e l'avanzamento automatico dell'indice si arrestano quando isTimeFrozen è true
   if (!isDragging && networkGroup && !isTimeFrozen) {
     networkGroup.rotation.y += 0.002;
 
