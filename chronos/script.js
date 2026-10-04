@@ -108,7 +108,7 @@ const i18n = {
 
 let currentLang = 'it';
 let activeIndex = 17;
-let isTimeFrozen = false;
+let isTimeFrozen = false; // Flag per congelare l'avanzamento automatico e le rotazioni
 let scene, camera, renderer, networkGroup, nodesMesh, linesMesh, positions, colors, nodeCount = 180;
 let isDragging = false;
 let previousPointer = { x: 0, y: 0 };
@@ -193,17 +193,11 @@ function init3D() {
   const canvas = document.getElementById('webgl-canvas');
   scene = new THREE.Scene();
 
-  // Controllo per identificare la modalità desktop da quella mobile
-  const isDesktop = window.matchMedia('(min-width: 1025px) and (pointer: fine)').matches;
-  const width = isDesktop ? window.innerWidth : (canvas.clientWidth || window.innerWidth);
-  const height = isDesktop ? window.innerHeight : (canvas.clientHeight || window.innerHeight);
-
-  camera = new THREE.PerspectiveCamera(40, width / height, 0.1, 1000);
+  camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000);
   camera.position.set(0, 0, 7.5);
 
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setClearColor(0x000000, 0);
-  renderer.setSize(width, height, false);
+  renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
   networkGroup = new THREE.Group();
@@ -284,20 +278,12 @@ function init3D() {
   scene.add(networkGroup);
 
   window.addEventListener('resize', onResize);
-  window.addEventListener('orientationchange', () => setTimeout(onResize, 200));
 }
 
 function onResize() {
-  const canvas = document.getElementById('webgl-canvas');
-  if (!canvas) return;
-  
-  const isDesktop = window.matchMedia('(min-width: 1025px) and (pointer: fine)').matches;
-  const width = isDesktop ? window.innerWidth : (canvas.clientWidth || window.innerWidth);
-  const height = isDesktop ? window.innerHeight : (canvas.clientHeight || window.innerHeight);
-
-  camera.aspect = width / height;
+  camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(width, height, false);
+  renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function initInteractions() {
@@ -314,8 +300,7 @@ function initInteractions() {
     pointerSpeed = Math.sqrt(dx * dx + dy * dy) * 0.05;
     lastPointerPos = { x: clientX, y: clientY };
 
-    const speedEl = document.getElementById('speed-val');
-    if (speedEl) speedEl.innerText = `${pointerSpeed.toFixed(2)} M/S`;
+    document.getElementById('speed-val').innerText = `${pointerSpeed.toFixed(2)} M/S`;
     updateSparkline(pointerSpeed);
 
     if (isDragging && networkGroup && !isTimeFrozen) {
@@ -333,24 +318,27 @@ function initInteractions() {
     previousPointer = { x: clientX, y: clientY };
   }
 
-  // Pointer event globale per il tracking sia su desktop che su schermi touch
-  window.addEventListener('pointermove', (e) => {
-    handlePointerMove(e.clientX, e.clientY);
+  window.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
+  window.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    previousPointer = { x: e.clientX, y: e.clientY };
+    lastPointerPos = { x: e.clientX, y: e.clientY };
   });
+  window.addEventListener('mouseup', () => { isDragging = false; });
 
-  window.addEventListener('pointerdown', (e) => {
-    // Attiva il drag ovunque su Desktop, oppure se si tocca direttamente la palla nei dispositivi portatili
-    const isDesktop = window.matchMedia('(min-width: 1025px) and (pointer: fine)').matches;
-    if (isDesktop || e.target.id === 'webgl-canvas') {
-      isDragging = true;
-      previousPointer = { x: e.clientX, y: e.clientY };
-      lastPointerPos = { x: e.clientX, y: e.clientY };
-    }
-  });
+  window.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    const touch = e.touches[0];
+    previousPointer = { x: touch.clientX, y: touch.clientY };
+    lastPointerPos = { x: touch.clientX, y: touch.clientY };
+  }, { passive: true });
 
-  const stopDragging = () => { isDragging = false; };
-  window.addEventListener('pointerup', stopDragging);
-  window.addEventListener('pointercancel', stopDragging);
+  window.addEventListener('touchmove', (e) => {
+    const touch = e.touches[0];
+    handlePointerMove(touch.clientX, touch.clientY);
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => { isDragging = false; });
 
   document.querySelectorAll('a, button, .menu-item, .index-item, .lang-switch, .brand, .card-link').forEach(el => {
     el.addEventListener('mouseenter', () => cursor && cursor.classList.add('hovered'));
@@ -401,8 +389,9 @@ function triggerUselessPulse() {
   }
 }
 
+// Congela il tempo ed esegue il blocco dell'indice all'apertura del modale
 function openModal() {
-  isTimeFrozen = true;
+  isTimeFrozen = true; // Attiva il congelamento dell'avanzamento
   const modal = document.getElementById('modal-hour');
   const dict = i18n[currentLang];
   const sec = dict.sections[activeIndex];
@@ -414,8 +403,9 @@ function openModal() {
   modal.classList.add('open');
 }
 
+// Scongela il tempo alla chiusura del modale
 function closeModal() {
-  isTimeFrozen = false;
+  isTimeFrozen = false; // Disattiva il congelamento
   document.getElementById('modal-hour').classList.remove('open');
 }
 
@@ -425,15 +415,13 @@ function updateSparkline(val) {
   sparklineVals.push(Math.min(Math.max(val * 5, 2), 16));
 
   const container = document.getElementById('sparkline');
-  if (container) {
-    container.innerHTML = '';
-    sparklineVals.forEach(v => {
-      const bar = document.createElement('div');
-      bar.className = 'spark-bar';
-      bar.style.height = `${v}px`;
-      container.appendChild(bar);
-    });
-  }
+  container.innerHTML = '';
+  sparklineVals.forEach(v => {
+    const bar = document.createElement('div');
+    bar.className = 'spark-bar';
+    bar.style.height = `${v}px`;
+    container.appendChild(bar);
+  });
 }
 
 function toggleAudio() {
@@ -465,13 +453,13 @@ function toggleAudio() {
 
 function updateClock() {
   const now = new Date();
-  const clockEl = document.getElementById('clock-val');
-  if (clockEl) clockEl.innerText = now.toTimeString().split(' ')[0];
+  document.getElementById('clock-val').innerText = now.toTimeString().split(' ')[0];
 }
 
 function animate() {
   requestAnimationFrame(animate);
 
+  // La rotazione e l'avanzamento automatico dell'indice si arrestano quando isTimeFrozen è true
   if (!isDragging && networkGroup && !isTimeFrozen) {
     networkGroup.rotation.y += 0.002;
 
