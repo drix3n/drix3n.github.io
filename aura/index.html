@@ -1,4 +1,4 @@
-<!-- index.html -->
+<!-- index.html (Aura Suites Home) -->
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -30,9 +30,9 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <a href="index.html" class="font-serif-title text-2xl tracking-widest uppercase font-semibold text-neutral-900">AURA</a>
             
-            <!-- Menu Desktop -->
             <nav class="hidden lg:flex items-center space-x-6 text-sm tracking-wide font-medium text-neutral-600">
-                <a href="index.html#camere" class="hover:text-neutral-900 transition">Camere</a>
+                <a href="#chi-siamo" class="hover:text-neutral-900 transition">Chi Siamo</a>
+                <a href="camere.html" class="hover:text-neutral-900 transition">Camere</a>
                 <a href="wellness.html" class="hover:text-neutral-900 transition">Wellness & Spa</a>
                 <a href="ristorazione.html" class="hover:text-neutral-900 transition">Ristoranti, Bar & Nightlife</a>
                 <a href="escursioni.html" class="hover:text-neutral-900 transition">Escursioni</a>
@@ -45,7 +45,6 @@
                 </a>
             </div>
 
-            <!-- Pulsante Hamburger per Mobile -->
             <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden text-neutral-900 p-2 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
@@ -53,9 +52,9 @@
             </button>
         </div>
 
-        <!-- Menu Tendina Mobile -->
         <div id="mobile-menu" class="hidden lg:hidden bg-cream border-t border-neutral-200 px-6 py-4 space-y-3">
-            <a href="index.html#camere" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Camere</a>
+            <a href="#chi-siamo" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Chi Siamo</a>
+            <a href="camere.html" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Camere</a>
             <a href="wellness.html" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Wellness & Spa</a>
             <a href="ristorazione.html" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Ristoranti, Bar & Nightlife</a>
             <a href="escursioni.html" class="block text-sm font-semibold text-neutral-800 py-1 border-b border-neutral-200">Escursioni</a>
@@ -86,181 +85,58 @@
                 <p class="text-neutral-200 text-sm md:text-base font-light leading-relaxed mb-6">
                     Camere eleganti, suite panoramiche, percorso benessere privato ed escursioni ad hoc sul mare.
                 </p>
-                <a href="prenotazione.html" class="inline-block bg-white text-neutral-900 px-6 py-3 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-neutral-100 transition">
-                    Prenota Ora
+                <a href="camere.html" class="inline-block bg-white text-neutral-900 px-6 py-3 rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-neutral-100 transition">
+                    Esplora le Camere
                 </a>
             </div>
         </section>
 
-        <!-- Camere Grid -->
-        <section id="camere" class="space-y-8">
-            <div>
-                <h2 class="font-serif-title text-3xl font-light text-neutral-900">Le Nostre 7 Sistemazioni</h2>
-                <p class="text-neutral-500 text-sm mt-1">Clicca sull'immagine o sui dettagli per scoprire le foto e le dotazioni complete.</p>
+        <!-- Sezione Chi Siamo & Posizione -->
+        <section id="chi-siamo" class="bg-white rounded-2xl p-8 md:p-12 border border-neutral-soft shadow-sm space-y-8">
+            <div class="max-w-3xl">
+                <span class="text-xs uppercase tracking-widest text-amber-800 font-semibold">Dal 2018</span>
+                <h2 class="font-serif-title text-3xl md:text-4xl font-light text-neutral-900 mt-1 mb-4">L'Arte dell'Ospitalità Riservata</h2>
+                <p class="text-neutral-600 text-sm md:text-base leading-relaxed">
+                    Fondato nel <strong>2018</strong>, <strong>Aura Suites</strong> nasce dal desiderio di creare un’oasi di totale serenità e riservatezza. Il nostro boutique resort accoglie esclusivamente un pubblico adulto (16+) per garantire un soggiorno all'insegna del relax assoluto, lontano dal caos della vita quotidiana.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- 1. Classic Queen Room -->
-                <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition flex flex-col">
-                    <a href="camera-dettaglio.html?id=classic-queen" class="block relative h-56 overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Classic Queen Room">
-                        <span class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition">🔍 Clicca per Foto & Info</span>
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Max 2 Ospiti</span>
-                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-semibold border border-emerald-200">✓ 12/12 stanze disponibili</span>
-                            </div>
-                            <h3 class="font-serif-title text-2xl font-medium text-neutral-900 mb-1">Classic Queen Room</h3>
-                            <div class="text-lg font-semibold text-neutral-900 mb-2">€140 <span class="text-xs font-normal text-neutral-400">/ notte</span></div>
-                            <p class="text-neutral-500 text-xs leading-relaxed">Letto Queen Size, bagno in marmo, minibar locale, Wi-Fi e vista giardino.</p>
-                        </div>
-                        <div class="flex items-center justify-between border-t border-neutral-soft pt-4 space-x-2">
-                            <a href="camera-dettaglio.html?id=classic-queen" class="text-xs font-semibold underline text-neutral-600 hover:text-neutral-900">Dettagli & Foto</a>
-                            <a href="prenotazione.html?room=classic-queen" class="bg-stone-dark text-white px-4 py-2 rounded-xl text-xs uppercase font-semibold hover:bg-neutral-800">Seleziona</a>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 border-t border-neutral-soft">
+                <div class="space-y-2">
+                    <div class="text-2xl">📍</div>
+                    <h3 class="font-serif-title text-xl font-medium text-neutral-900">Dove Siamo</h3>
+                    <p class="text-xs text-neutral-500 leading-relaxed">
+                        Situato sulla scogliera panoramica di <strong>Taormina (Messina)</strong>, in Via delle Primule 12, a soli 5 minuti a piedi dalla spiaggia privata.
+                    </p>
                 </div>
 
-                <!-- 2. Superior Twin Room -->
-                <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition flex flex-col">
-                    <a href="camera-dettaglio.html?id=superior-twin" class="block relative h-56 overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Superior Twin Room">
-                        <span class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition">🔍 Clicca per Foto & Info</span>
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Max 2 Ospiti</span>
-                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-semibold border border-emerald-200">✓ 8/8 stanze disponibili</span>
-                            </div>
-                            <h3 class="font-serif-title text-2xl font-medium text-neutral-900 mb-1">Superior Twin Room</h3>
-                            <div class="text-lg font-semibold text-neutral-900 mb-2">€170 <span class="text-xs font-normal text-neutral-400">/ notte</span></div>
-                            <p class="text-neutral-500 text-xs leading-relaxed">Balconcino privato arredato, due letti singoli personalizzabili e set biologico.</p>
-                        </div>
-                        <div class="flex items-center justify-between border-t border-neutral-soft pt-4 space-x-2">
-                            <a href="camera-dettaglio.html?id=superior-twin" class="text-xs font-semibold underline text-neutral-600 hover:text-neutral-900">Dettagli & Foto</a>
-                            <a href="prenotazione.html?room=superior-twin" class="bg-stone-dark text-white px-4 py-2 rounded-xl text-xs uppercase font-semibold hover:bg-neutral-800">Seleziona</a>
-                        </div>
-                    </div>
+                <div class="space-y-2">
+                    <div class="text-2xl">🌿</div>
+                    <h3 class="font-serif-title text-xl font-medium text-neutral-900">Filosofia Adults Only</h3>
+                    <p class="text-xs text-neutral-500 leading-relaxed">
+                        Ambienti silenziosi, servizi benessere su misura, gastronomia d'eccellenza e nightlife insonorizzata pensati per soddisfare le esigenze di coppie e viaggiatori esperti.
+                    </p>
                 </div>
 
-                <!-- 3. Executive Sea View -->
-                <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition flex flex-col">
-                    <a href="camera-dettaglio.html?id=executive-sea" class="block relative h-56 overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Executive Sea View">
-                        <span class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition">🔍 Clicca per Foto & Info</span>
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Max 2 Ospiti</span>
-                                <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200">⚡ 3/5 stanze disponibili</span>
-                            </div>
-                            <h3 class="font-serif-title text-2xl font-medium text-neutral-900 mb-1">Executive Sea View</h3>
-                            <div class="text-lg font-semibold text-neutral-900 mb-2">€210 <span class="text-xs font-normal text-neutral-400">/ notte</span></div>
-                            <p class="text-neutral-500 text-xs leading-relaxed">Vista mare frontale, macchina caffè espresso, domotica e climatizzazione avanzata.</p>
-                        </div>
-                        <div class="flex items-center justify-between border-t border-neutral-soft pt-4 space-x-2">
-                            <a href="camera-dettaglio.html?id=executive-sea" class="text-xs font-semibold underline text-neutral-600 hover:text-neutral-900">Dettagli & Foto</a>
-                            <a href="prenotazione.html?room=executive-sea" class="bg-stone-dark text-white px-4 py-2 rounded-xl text-xs uppercase font-semibold hover:bg-neutral-800">Seleziona</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Deluxe Panorama Suite -->
-                <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition flex flex-col">
-                    <a href="camera-dettaglio.html?id=deluxe-panorama" class="block relative h-56 overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Deluxe Panorama Suite">
-                        <span class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition">🔍 Clicca per Foto & Info</span>
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Max 2 Ospiti</span>
-                                <span class="text-xs bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200">⚡ 4/7 stanze disponibili</span>
-                            </div>
-                            <h3 class="font-serif-title text-2xl font-medium text-neutral-900 mb-1">Deluxe Panorama Suite</h3>
-                            <div class="text-lg font-semibold text-neutral-900 mb-2">€310 <span class="text-xs font-normal text-neutral-400">/ notte</span></div>
-                            <p class="text-neutral-500 text-xs leading-relaxed">Vasca freestanding con vista sul mare, salotto elegante e terrazza ad uso esclusivo.</p>
-                        </div>
-                        <div class="flex items-center justify-between border-t border-neutral-soft pt-4 space-x-2">
-                            <a href="camera-dettaglio.html?id=deluxe-panorama" class="text-xs font-semibold underline text-neutral-600 hover:text-neutral-900">Dettagli & Foto</a>
-                            <a href="prenotazione.html?room=deluxe-panorama" class="bg-stone-dark text-white px-4 py-2 rounded-xl text-xs uppercase font-semibold hover:bg-neutral-800">Seleziona</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. Comfort Quad Room -->
-                <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition flex flex-col">
-                    <a href="camera-dettaglio.html?id=comfort-quad" class="block relative h-56 overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Comfort Quad Room">
-                        <span class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition">🔍 Clicca per Foto & Info</span>
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Max 4 Ospiti</span>
-                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-semibold border border-emerald-200">✓ 10/10 stanze disponibili</span>
-                            </div>
-                            <h3 class="font-serif-title text-2xl font-medium text-neutral-900 mb-1">Comfort Quad Room</h3>
-                            <div class="text-lg font-semibold text-neutral-900 mb-2">€220 <span class="text-xs font-normal text-neutral-400">/ notte</span></div>
-                            <p class="text-neutral-500 text-xs leading-relaxed">Sistemazione fino a 4 adulti con ambienti distinti, smart TV e doppio lavabo.</p>
-                        </div>
-                        <div class="flex items-center justify-between border-t border-neutral-soft pt-4 space-x-2">
-                            <a href="camera-dettaglio.html?id=comfort-quad" class="text-xs font-semibold underline text-neutral-600 hover:text-neutral-900">Dettagli & Foto</a>
-                            <a href="prenotazione.html?room=comfort-quad" class="bg-stone-dark text-white px-4 py-2 rounded-xl text-xs uppercase font-semibold hover:bg-neutral-800">Seleziona</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 6. Grand Family Residence -->
-                <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition flex flex-col">
-                    <a href="camera-dettaglio.html?id=grand-residence" class="block relative h-56 overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Grand Family Residence">
-                        <span class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition">🔍 Clicca per Foto & Info</span>
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Max 4 Ospiti</span>
-                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-full font-semibold border border-emerald-200">✓ 15/15 stanze disponibili</span>
-                            </div>
-                            <h3 class="font-serif-title text-2xl font-medium text-neutral-900 mb-1">Grand Family Residence</h3>
-                            <div class="text-lg font-semibold text-neutral-900 mb-2">€320 <span class="text-xs font-normal text-neutral-400">/ notte</span></div>
-                            <p class="text-neutral-500 text-xs leading-relaxed">Doppia camera da letto comunicante, due bagni completi e balcone privato esteso.</p>
-                        </div>
-                        <div class="flex items-center justify-between border-t border-neutral-soft pt-4 space-x-2">
-                            <a href="camera-dettaglio.html?id=grand-residence" class="text-xs font-semibold underline text-neutral-600 hover:text-neutral-900">Dettagli & Foto</a>
-                            <a href="prenotazione.html?room=grand-residence" class="bg-stone-dark text-white px-4 py-2 rounded-xl text-xs uppercase font-semibold hover:bg-neutral-800">Seleziona</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. Signature Terrace Suite -->
-                <div class="bg-white rounded-2xl overflow-hidden border border-neutral-soft shadow-sm hover:shadow-md transition flex flex-col">
-                    <a href="camera-dettaglio.html?id=signature-terrace" class="block relative h-56 overflow-hidden group">
-                        <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80" class="h-full w-full object-cover group-hover:scale-105 transition duration-500" alt="Signature Terrace Suite">
-                        <span class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-[11px] px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition">🔍 Clicca per Foto & Info</span>
-                    </a>
-                    <div class="p-6 flex-grow flex flex-col justify-between space-y-4">
-                        <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-xs uppercase tracking-wider text-neutral-400 font-semibold">Max 4 Ospiti</span>
-                                <span class="text-xs bg-red-100 text-red-800 px-2.5 py-0.5 rounded-full font-semibold border border-red-200">⚠ Solo 2/6 stanze rimaste!</span>
-                            </div>
-                            <h3 class="font-serif-title text-2xl font-medium text-neutral-900 mb-1">Signature Terrace Suite</h3>
-                            <div class="text-lg font-semibold text-neutral-900 mb-2">€450 <span class="text-xs font-normal text-neutral-400">/ notte</span></div>
-                            <p class="text-neutral-500 text-xs leading-relaxed">Attico di lusso per 4 ospiti con Jacuzzi privata riscaldata in terrazza e maggiordomo.</p>
-                        </div>
-                        <div class="flex items-center justify-between border-t border-neutral-soft pt-4 space-x-2">
-                            <a href="camera-dettaglio.html?id=signature-terrace" class="text-xs font-semibold underline text-neutral-600 hover:text-neutral-900">Dettagli & Foto</a>
-                            <a href="prenotazione.html?room=signature-terrace" class="bg-stone-dark text-white px-4 py-2 rounded-xl text-xs uppercase font-semibold hover:bg-neutral-800">Seleziona</a>
-                        </div>
-                    </div>
+                <div class="space-y-2">
+                    <div class="text-2xl">⭐</div>
+                    <h3 class="font-serif-title text-xl font-medium text-neutral-900">I Nostri Numeri</h3>
+                    <p class="text-xs text-neutral-500 leading-relaxed">
+                        7 tipologie di suite esclusive, 3 ristoranti tematici, 2 bar panoramici, Spa con centro olistico e la discoteca privata <em>Aura Club</em>.
+                    </p>
                 </div>
             </div>
+        </section>
+
+        <!-- Banner di reindirizzamento alle Camere -->
+        <section class="bg-sand rounded-2xl p-8 border border-neutral-soft flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="space-y-1">
+                <h3 class="font-serif-title text-2xl font-medium text-neutral-900">Scopri le 7 Sistemazioni Esclusive</h3>
+                <p class="text-xs text-neutral-500">Dai un'occhiata alle nostre suite esclusive, dalla Classic Queen alla Signature Terrace Suite con Jacuzzi privata.</p>
+            </div>
+            <a href="camere.html" class="bg-stone-dark text-white px-6 py-3 rounded-xl text-xs uppercase font-semibold hover:bg-neutral-800 transition whitespace-nowrap">
+                Vedi Tutte le Camere
+            </a>
         </section>
 
     </main>
@@ -273,7 +149,6 @@
 
     <script src="script.js"></script>
     <script>
-        // Slider automatico Hero
         let currentSlide = 0;
         const slides = document.querySelectorAll('.hero-slider-img');
         if (slides.length > 0) {
