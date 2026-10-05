@@ -4,30 +4,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
-    // Recupera la scelta salvata in precedenza o rileva la preferenza di sistema del dispositivo
+    // Recupera la scelta salvata nel LocalStorage del dispositivo
     const savedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     if (savedTheme) {
-        // Se l'utente ha già selezionato un tema nel sito, applicalo
+        // Se l'utente ha già visitato il sito ed impostato un tema, usa quello
         htmlElement.setAttribute('data-theme', savedTheme);
-    } else if (systemPrefersDark) {
-        // Se non c't'è una preferenza salvata, controlla il tema del sistema operativo
-        htmlElement.setAttribute('data-theme', 'dark');
     } else {
-        // Predefinito: Tema Chiaro
+        // Prima volta in assoluto che l'utente apre il sito: Tema Chiaro predefinito
         htmlElement.setAttribute('data-theme', 'light');
     }
 
     // Toggle al click del pulsante Sole/Luna
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-        // Imposta il nuovo tema sul DOM e salvalo permanentemente nel browser
-        htmlElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
+            // Imposta il nuovo tema sul DOM e salvalo permanentemente nel browser
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
 
     /* 2. Animazione Ingresso (Fade-In con Stagger Effect) */
     const fadeItems = document.querySelectorAll('.project-item, .about-content, .contact-card, .hero-content > *');
@@ -57,21 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastScroll = 0;
     const header = document.querySelector('.header');
 
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
+    if (header) {
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
 
-        if (currentScroll <= 0) {
-            header.style.transform = 'translateY(0)';
-            return;
-        }
+            if (currentScroll <= 0) {
+                header.style.transform = 'translateY(0)';
+                return;
+            }
 
-        if (currentScroll > lastScroll && currentScroll > 100) {
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            header.style.transform = 'translateY(0)';
-        }
-        lastScroll = currentScroll;
-    });
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
+        });
+    }
 
     /* 4. Transizione Smooth per i link ancorati */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
