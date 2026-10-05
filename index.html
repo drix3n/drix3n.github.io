@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giancarlo Tridente — Web Developer & Digital Designer</title>
+    <meta name="description" content="Portfolio di Giancarlo Tridente, Web Developer & Digital Designer. Progetto esperienze digitali ad alto impatto visivo.">
+    <meta name="theme-color" content="#FAFAF9">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FAFAF9'/%3E%3Cpath d='M 22 18 A 10 10 0 1 0 22 42 L 22 32 L 15 32' fill='none' stroke='%231C1917' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M 32 18 L 50 18 M 41 18 L 41 42' fill='none' stroke='%231C1917' stroke-width='3.2' stroke-linecap='round'/%3E%3Ccircle cx='55' cy='40' r='2.6' fill='%232563EB'/%3E%3C/svg%3E">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -14,14 +19,33 @@
     <!-- Navigazione Minimal con Switch Theme -->
     <header class="header">
         <div class="container nav-container">
-            <a href="#" class="brand-logo">GT<span class="accent-dot">.</span></a>
+            <a href="#" class="brand-logo" aria-label="Giancarlo Tridente — Home">
+                <svg class="logo-svg" viewBox="0 0 64 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <!-- Lettera G -->
+                    <path d="M 22 8 A 12 12 0 1 0 22 32 L 22 22 L 14 22"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="3.2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                    <!-- Lettera T -->
+                    <path d="M 32 8 L 52 8 M 42 8 L 42 32"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="3.2"
+                          stroke-linecap="round"/>
+                    <!-- Punto accent -->
+                    <circle cx="58" cy="30" r="2.8" class="logo-dot"/>
+                </svg>
+                <span class="logo-text">Giancarlo Tridente</span>
+            </a>
             <div class="nav-right">
                 <nav class="nav-menu">
                     <a href="#projects">Lavori</a>
                     <a href="#about">Chi Sono</a>
                     <a href="#contact">Contatti</a>
                 </nav>
-                
+
                 <!-- Toggle Dark/Light Mode -->
                 <button id="theme-toggle" class="theme-toggle" aria-label="Cambia tema">
                     <span class="theme-icon sun-icon">☀️</span>
@@ -43,7 +67,7 @@
                     <h1 class="hero-name">Giancarlo Tridente</h1>
                     <p class="hero-role">Web Developer & Digital Designer</p>
                     <p class="hero-pitch">
-                        Progetto e sviluppo esperienze digitali ad alto impatto visivo e funzionale, 
+                        Progetto e sviluppo esperienze digitali ad alto impatto visivo e funzionale,
                         trasformando la complessità tecnica in interfacce pulite, veloci e intuitive.
                     </p>
                     <div class="hero-actions">
@@ -63,7 +87,7 @@
                 </div>
 
                 <div class="projects-list">
-                    
+
                     <!-- Progetto 1 -->
                     <article class="project-item">
                         <div class="project-meta">
@@ -71,11 +95,11 @@
                             <span class="project-category">Luxury Hospitality Platform (Concept)</span>
                         </div>
                         <div class="project-body">
-                            <h3 class="project-title">Aura Suites & Resort</h3>
+                            <h3 class="project-title">Aura Suites &amp; Resort</h3>
                             <p class="project-description">
                                 Progetto concept per una piattaforma di prenotazione diretta orientata al segmento Luxury Adults Only. Design minimale e motore di calcolo preventivi in tempo reale.
                             </p>
-                            
+
                             <div class="project-details">
                                 <div class="detail-block">
                                     <span class="detail-label">Natura del Progetto:</span>
@@ -163,12 +187,12 @@
                                     </ul>
                                 </div>
                                 <div class="skill-group">
-                                    <h4>Design & Core</h4>
+                                    <h4>Design &amp; Core</h4>
                                     <ul>
-                                        <li>UI/UX & Interactive Design</li>
+                                        <li>UI/UX &amp; Interactive Design</li>
                                         <li>Design Systems</li>
-                                        <li>Wireframing & Prototyping</li>
-                                        <li>Performance & SEO Basics</li>
+                                        <li>Wireframing &amp; Prototyping</li>
+                                        <li>Performance &amp; SEO Basics</li>
                                     </ul>
                                 </div>
                             </div>
@@ -185,7 +209,7 @@
                     <span class="section-tag">03 / Contatto</span>
                     <h2 class="contact-title">Hai un progetto in mente?</h2>
                     <p class="contact-subtitle">Scrivimi una mail. Rispondo di solito entro 24 ore.</p>
-                    
+
                     <a href="mailto:giancarlotridente@gmail.com" class="contact-email">
                         giancarlotridente@gmail.com
                     </a>
