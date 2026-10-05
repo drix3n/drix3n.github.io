@@ -5,13 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlElement = document.documentElement;
 
     // Recupera la scelta salvata nel LocalStorage del dispositivo
-    const savedTheme = localStorage.getItem('theme');
+    let savedTheme = null;
+    try { savedTheme = localStorage.getItem('theme'); } catch (_) {}
 
     if (savedTheme) {
         // Se l'utente ha già visitato il sito ed impostato un tema, usa quello
         htmlElement.setAttribute('data-theme', savedTheme);
     } else {
-        // Prima volta in assoluto che l'utente apre il sito: Tema Chiaro predefinito
+        // Prima volta in assoluto: Tema Chiaro predefinito
         htmlElement.setAttribute('data-theme', 'light');
     }
 
@@ -21,9 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentTheme = htmlElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
-            // Imposta il nuovo tema sul DOM e salvalo permanentemente nel browser
             htmlElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
+            try { localStorage.setItem('theme', newTheme); } catch (_) {}
         });
     }
 
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 header.style.transform = 'translateY(0)';
             }
             lastScroll = currentScroll;
-        });
+        }, { passive: true });
     }
 
     /* 4. Transizione Smooth per i link ancorati */
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
+            if (targetId === '#' || targetId === '') return;
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
