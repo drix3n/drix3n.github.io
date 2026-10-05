@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AETHER — Objects for Mindful Workspaces</title>
+  <meta name="description" content="AETHER progetta oggetti scultorei per scrivanie consapevoli. Alluminio, ceramica e vetro fatti a mano in Italia.">
+  <meta name="theme-color" content="#0b0b0d">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AETHER — Objects for Mindful Workspaces">
+  <meta property="og:description" content="Oggetti scultorei per spazi di lavoro consapevoli. Progettati a Milano, prodotti in Italia.">
+  <meta property="og:image" content="og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="canonical" href="https://aether.example.com/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230b0b0d'/%3E%3Ctext x='50' y='68' font-family='serif' font-size='60' fill='%23c8a05a' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+
+  <header class="navbar" role="banner">
+    <div class="nav-left">
+      <a href="index.html" class="logo" aria-label="AETHER - Home">AETHER<span>.</span></a>
+      <nav class="nav-links" aria-label="Navigazione principale">
+        <a href="index.html" class="active">Catalogo</a>
+        <a href="limited.html">Limited</a>
+        <a href="services.html">Servizi</a>
+        <a href="journal.html">Journal</a>
+        <a href="about.html">Chi siamo</a>
+        <a href="contact.html">Contatti</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" onclick="toggleTheme()" title="Cambia tema" aria-label="Cambia tema">
+        <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"></svg>
+      </button>
+      <button class="bag-trigger" onclick="toggleCart()" aria-label="Apri carrello">
+        <span>Bag</span>
+        <span class="bag-badge" id="cart-count">0</span>
+      </button>
+      <button class="menu-toggle" onclick="toggleMobileNav()" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Navigazione mobile">
+    <a href="index.html" class="active">Catalogo</a>
+    <a href="limited.html">Limited</a>
+    <a href="services.html">Servizi</a>
+    <a href="journal.html">Journal</a>
+    <a href="about.html">Chi siamo</a>
+    <a href="contact.html">Contatti</a>
+  </nav>
+
+  <main id="main-content">
+    <section class="hero-section">
+      <div class="hero-tag">EDIZIONE 2026 / COLLEZIONE PERMANENTE</div>
+      <h1 class="hero-title">Architettura <em>per la tua mente</em>.</h1>
+      <p class="hero-sub">Oggetti da scrivania scultorei in alluminio spazzolato, ceramica opaca e vetro minerale. Progettati per durare, pensati per ispirare.</p>
+    </section>
+
+    <div class="main-layout">
+      <aside class="sidebar" aria-label="Filtri">
+        <div class="filter-block">
+          <span class="filter-header">Collezione</span>
+          <button class="filter-btn active" onclick="setCategory('all', this)">Tutti gli oggetti</button>
+          <button class="filter-btn" onclick="setCategory('illuminazione', this)">Illuminazione</button>
+          <button class="filter-btn" onclick="setCategory('organizzazione', this)">Organizzazione</button>
+          <button class="filter-btn" onclick="setCategory('audio', this)">Acoustics</button>
+        </div>
+        <div class="filter-block">
+          <span class="filter-header">Finitura</span>
+          <button class="filter-btn active" onclick="setMaterial('all', this)">Tutti i materiali</button>
+          <button class="filter-btn" onclick="setMaterial('alluminio', this)">Alluminio Anodizzato</button>
+          <button class="filter-btn" onclick="setMaterial('ceramica', this)">Ceramica Opaca</button>
+          <button class="filter-btn" onclick="setMaterial('vetro', this)">Vetro Fumè</button>
+        </div>
+      </aside>
+
+      <section class="content-area" aria-label="Catalogo">
+        <div class="catalog-header">
+          <div class="catalog-search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="text" id="search-input" placeholder="Cerca tra gli oggetti..." oninput="filterProducts()" aria-label="Cerca prodotti">
+            <span class="search-count" id="search-count">20 oggetti</span>
+          </div>
+
+          <div class="sort-wrap">
+            <button class="sort-trigger" onclick="toggleSortMenu()" aria-haspopup="true" aria-expanded="false">
+              <span class="sort-label">Ordina</span>
+              <span class="sort-value" id="sort-value">Predefinito</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="sort-menu" role="menu">
+              <button class="sort-option active" data-value="default" onclick="setSort('default')">Predefinito <span class="check">✓</span></button>
+              <button class="sort-option" data-value="price-asc" onclick="setSort('price-asc')">Prezzo crescente <span class="check">✓</span></button>
+              <button class="sort-option" data-value="price-desc" onclick="setSort('price-desc')">Prezzo decrescente <span class="check">✓</span></button>
+              <button class="sort-option" data-value="name" onclick="setSort('name')">Nome A–Z <span class="check">✓</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="product-grid" id="product-grid"></div>
+      </section>
+    </div>
+  </main>
+
+  <div class="drawer-overlay" id="overlay" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Carrello" aria-hidden="true">
+    <div class="cart-header">
+      <h3>LA TUA SELEZIONE</h3>
+      <button class="close-btn" onclick="toggleCart()" aria-label="Chiudi carrello">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="summary-line"><span>Spedizione</span><span>Gratuita in EU</span></div>
+      <div class="summary-line total"><span>Totale</span><span id="cart-total">€0</span></div>
+      <a href="checkout.html" class="checkout-btn">Procedi all'ordine</a>
+    </div>
+  </aside>
+
+  <footer class="footer" role="contentinfo">
+    <div>
+      <a href="index.html" class="logo" style="margin-bottom: 14px; display: inline-block;">AETHER<span>.</span></a>
+      <p style="font-size: 12px; max-width: 320px;">Oggetti scultorei per spazi di lavoro consapevoli. Progettati a Milano, prodotti in Italia.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="index.html">Catalogo</a>
+      <a href="limited.html">Edizione Limitata</a>
+      <a href="services.html">Servizi</a>
+    </div>
+    <div>
+      <h4>Azienda</h4>
+      <a href="about.html">Chi siamo</a>
+      <a href="journal.html">Journal</a>
+      <a href="contact.html">Contatti</a>
+    </div>
+    <div>
+      <h4>Legale</h4>
+      <a href="#">Privacy</a>
+      <a href="#">Termini</a>
+      <a href="#">Resi</a>
+    </div>
+    <div class="copy">© 2026 AETHER — OBJECTS FOR MINDFUL WORKSPACES</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AETHER — Journal</title>
+  <meta name="description" content="Riflessioni su materia, gesto e silenzio. Storie di artigiani, processi produttivi e materiali.">
+  <meta name="theme-color" content="#0b0b0d">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230b0b0d'/%3E%3Ctext x='50' y='68' font-family='serif' font-size='60' fill='%23c8a05a' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
+
+  <header class="navbar" role="banner">
+    <div class="nav-left">
+      <a href="index.html" class="logo" aria-label="AETHER - Home">AETHER<span>.</span></a>
+      <nav class="nav-links" aria-label="Navigazione principale">
+        <a href="index.html">Catalogo</a>
+        <a href="limited.html">Limited</a>
+        <a href="services.html">Servizi</a>
+        <a href="journal.html" class="active">Journal</a>
+        <a href="about.html">Chi siamo</a>
+        <a href="contact.html">Contatti</a>
+      </nav>
+    </div>
+    <div class="nav-right">
+      <button class="icon-btn" onclick="toggleTheme()" title="Cambia tema" aria-label="Cambia tema">
+        <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"></svg>
+      </button>
+      <button class="bag-trigger" onclick="toggleCart()" aria-label="Apri carrello">
+        <span>Bag</span>
+        <span class="bag-badge" id="cart-count">0</span>
+      </button>
+      <button class="menu-toggle" onclick="toggleMobileNav()" aria-label="Apri menu" aria-expanded="false" aria-controls="mobile-nav">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Navigazione mobile">
+    <a href="index.html">Catalogo</a>
+    <a href="limited.html">Limited</a>
+    <a href="services.html">Servizi</a>
+    <a href="journal.html" class="active">Journal</a>
+    <a href="about.html">Chi siamo</a>
+    <a href="contact.html">Contatti</a>
+  </nav>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="hero-tag">JOURNAL / NOTE DI STUDIO</div>
+      <h1>Riflessioni su <em>materia</em>, gesto e silenzio.</h1>
+      <p>Storie di artigiani, processi produttivi, materiali e persone che abitano gli spazi di lavoro.</p>
+    </section>
+
+    <div class="section-block">
+      <div class="card-grid">
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80" alt="Alluminio riciclato" loading="lazy" decoding="async">
+          <div class="article-body">
+            <div class="tag">Materiali</div>
+            <h3>Perché scegliamo alluminio riciclato</h3>
+            <p>Il 95% dell'energia in meno rispetto all'alluminio vergine. Una scelta di design e di coscienza.</p>
+          </div>
+        </article>
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1493552152660-f915ab47ae9d?w=800&q=80" alt="Vasaio al lavoro" loading="lazy" decoding="async">
+          <div class="article-body">
+            <div class="tag">Artigianato</div>
+            <h3>Il gesto del vasaio</h3>
+            <p>Visitiamo il laboratorio di Marta, in Toscana, che dà forma ai nostri vasi in ceramica raku.</p>
+          </div>
+        </article>
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=800&q=80" alt="Lampada da tavolo" loading="lazy" decoding="async">
+          <div class="article-body">
+            <div class="tag">Design</div>
+            <h3>La luce come architettura</h3>
+            <p>Come progettare una lampada che non illumini solo, ma definisca lo spazio intorno a sé.</p>
+          </div>
+        </article>
+        <article class="article-card">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&q=80" alt="Scrivania ordinata" loading="lazy" decoding="async">
+          <div class="article-body">
+            <div class="tag">Spazi</div>
+            <h3>Scrivanie che respirano</h3>
+            <p>Tre principi per organizzare la scrivania in modo che favorisca concentrazione e calma.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <div class="drawer-overlay" id="overlay" onclick="toggleCart()"></div>
+  <aside class="cart-drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Carrello" aria-hidden="true">
+    <div class="cart-header">
+      <h3>LA TUA SELEZIONE</h3>
+      <button class="close-btn" onclick="toggleCart()" aria-label="Chiudi carrello">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="summary-line"><span>Spedizione</span><span>Gratuita in EU</span></div>
+      <div class="summary-line total"><span>Totale</span><span id="cart-total">€0</span></div>
+      <a href="checkout.html" class="checkout-btn">Procedi all'ordine</a>
+    </div>
+  </aside>
+
+  <footer class="footer" role="contentinfo">
+    <div>
+      <a href="index.html" class="logo" style="margin-bottom: 14px; display: inline-block;">AETHER<span>.</span></a>
+      <p style="font-size: 12px; max-width: 320px;">Oggetti scultorei per spazi di lavoro consapevoli. Progettati a Milano, prodotti in Italia.</p>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <a href="index.html">Catalogo</a>
+      <a href="limited.html">Edizione Limitata</a>
+      <a href="services.html">Servizi</a>
+    </div>
+    <div>
+      <h4>Azienda</h4>
+      <a href="about.html">Chi siamo</a>
+      <a href="journal.html">Journal</a>
+      <a href="contact.html">Contatti</a>
+    </div>
+    <div>
+      <h4>Legale</h4>
+      <a href="#">Privacy</a>
+      <a href="#">Termini</a>
+      <a href="#">Resi</a>
+    </div>
+    <div class="copy">© 2026 AETHER — OBJECTS FOR MINDFUL WORKSPACES</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
