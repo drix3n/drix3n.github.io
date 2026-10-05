@@ -1,28 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* 1. Gestione Tema Chiaro / Scuro con Memorizzazione Persistente (LocalStorage) */
+    /* 1. Gestione Tema (il tema iniziale è già applicato dallo script inline nell'<head>) */
     const themeToggleBtn = document.getElementById('theme-toggle');
     const htmlElement = document.documentElement;
 
-    // Recupera la scelta salvata nel LocalStorage del dispositivo
-    let savedTheme = null;
-    try { savedTheme = localStorage.getItem('theme'); } catch (_) {}
-
-    if (savedTheme) {
-        // Se l'utente ha già visitato il sito ed impostato un tema, usa quello
-        htmlElement.setAttribute('data-theme', savedTheme);
-    } else {
-        // Prima volta in assoluto: Tema Chiaro predefinito
-        htmlElement.setAttribute('data-theme', 'light');
-    }
-
-    // Toggle al click del pulsante Sole/Luna
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
-            const currentTheme = htmlElement.getAttribute('data-theme');
+            const currentTheme = htmlElement.getAttribute('data-theme') || 'light';
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
 
             htmlElement.setAttribute('data-theme', newTheme);
+            htmlElement.style.colorScheme = (newTheme === 'dark') ? 'dark' : 'light';
             try { localStorage.setItem('theme', newTheme); } catch (_) {}
         });
     }
