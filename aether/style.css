@@ -1,7 +1,11 @@
 /* ============================================================
    AETHER — style.css
+   Design system, layout, responsive iPhone/mobile
    ============================================================ */
 
+/* ------------------------------------------------------------
+   1. VARIABILI DI DESIGN (tema scuro di default)
+   ------------------------------------------------------------ */
 :root {
   --bg: #0b0b0d;
   --bg-soft: #111114;
@@ -27,6 +31,9 @@
   --nav-height: 64px;
 }
 
+/* ------------------------------------------------------------
+   2. TEMA CHIARO
+   ------------------------------------------------------------ */
 [data-theme="light"] {
   --bg: #f6f3ec;
   --bg-soft: #efeae0;
@@ -44,13 +51,18 @@
   --shadow: 0 20px 50px rgba(60, 50, 30, 0.10);
 }
 
+/* ------------------------------------------------------------
+   3. RESET E BASE
+   ------------------------------------------------------------ */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + 20px);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -80,6 +92,7 @@ img { max-width: 100%; height: auto; display: block; }
 button { font-family: inherit; -webkit-tap-highlight-color: transparent; }
 input, textarea, select { font-family: inherit; font-size: 16px; }
 
+/* Skip link per accessibilità */
 .skip-link {
   position: absolute; top: -100px; left: 8px;
   z-index: 9999;
@@ -91,13 +104,16 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 .skip-link:focus { top: 8px; outline: 3px solid #fff; outline-offset: 2px; }
 
+/* Focus visibile */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
 
-/* NAVBAR */
+/* ------------------------------------------------------------
+   4. NAVBAR
+   ------------------------------------------------------------ */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -118,12 +134,14 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 
 .nav-left { display: flex; align-items: center; gap: 32px; min-width: 0; }
+
 .logo {
   font-weight: 700; font-size: 18px;
   letter-spacing: 4px; color: var(--text-main);
   flex-shrink: 0;
 }
 .logo span { color: var(--accent); }
+
 .nav-links { display: flex; gap: 22px; }
 .nav-links a {
   font-size: 13px; color: var(--text-sub);
@@ -147,6 +165,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 
 .nav-right { display: flex; align-items: center; gap: 12px; }
 
+/* Pulsante icona circolare (tema, ecc.) */
 .icon-btn {
   background: transparent; color: var(--text-main);
   border: 1px solid var(--border);
@@ -162,6 +181,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   .icon-btn:hover { border-color: var(--border-strong); background: var(--card-bg); }
 }
 
+/* Pulsante Bag (carrello) */
 .bag-trigger {
   background: var(--text-main); color: var(--bg);
   border: none; padding: 10px 18px;
@@ -173,6 +193,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   flex-shrink: 0;
 }
 .bag-trigger:active { opacity: .8; }
+
 .bag-badge {
   background: var(--accent); color: #fff;
   font-size: 11px; padding: 2px 7px;
@@ -183,6 +204,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 .bag-badge.bump { transform: scale(1.25); }
 
+/* Hamburger menu (visibile solo su mobile) */
 .menu-toggle {
   display: none;
   background: transparent; color: var(--text-main);
@@ -194,6 +216,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 .menu-toggle:active { transform: scale(0.95); }
 
+/* Menu mobile a tendina */
 .mobile-nav {
   display: none;
   position: fixed;
@@ -229,17 +252,21 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 .mobile-nav a:active { color: var(--text-main); background: var(--accent-soft); }
 .mobile-nav a.active { color: var(--text-main); font-weight: 600; }
 
-/* HERO */
+/* ------------------------------------------------------------
+   5. HERO
+   ------------------------------------------------------------ */
 .hero-section {
   padding: var(--pad-y) var(--pad-x);
   max-width: 980px;
 }
+
 .hero-tag {
   font-size: clamp(10px, 2.5vw, 11px);
   letter-spacing: 3px;
   color: var(--accent); font-weight: 600;
   margin-bottom: 20px; text-transform: uppercase;
 }
+
 .hero-title {
   font-family: var(--font-serif);
   font-size: clamp(34px, 8vw, 64px);
@@ -249,6 +276,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   margin-bottom: 20px;
 }
 .hero-title em { font-style: italic; color: var(--accent); }
+
 .hero-sub {
   font-size: clamp(15px, 2.5vw, 17px);
   color: var(--text-sub);
@@ -257,23 +285,29 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   line-height: 1.6;
 }
 
-/* LAYOUT */
+/* ------------------------------------------------------------
+   6. LAYOUT CATALOGO (sidebar + contenuto)
+   ------------------------------------------------------------ */
 .main-layout {
   display: flex;
   padding: var(--pad-y) var(--pad-x) clamp(50px, 8vw, 80px);
   gap: 60px;
   flex: 1;
 }
+
 .sidebar { width: 210px; flex-shrink: 0; }
+
 .filter-block {
   margin-bottom: 36px;
   display: flex; flex-direction: column; gap: 6px;
 }
+
 .filter-header {
   font-size: 11px; text-transform: uppercase;
   letter-spacing: 2px; color: var(--text-sub);
   margin-bottom: 10px; font-weight: 600;
 }
+
 .filter-btn {
   background: none; border: none;
   color: var(--text-sub); text-align: left;
@@ -289,9 +323,12 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   color: var(--text-main); font-weight: 600;
   padding-left: 10px; border-left-color: var(--accent);
 }
+
 .content-area { flex-grow: 1; min-width: 0; }
 
-/* CATALOG HEADER */
+/* ------------------------------------------------------------
+   7. CATALOG HEADER (ricerca + ordinamento)
+   ------------------------------------------------------------ */
 .catalog-header {
   display: flex;
   justify-content: space-between;
@@ -303,6 +340,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   flex-wrap: wrap;
 }
 
+/* Barra di ricerca */
 .catalog-search {
   display: flex; align-items: center;
   gap: 12px;
@@ -329,6 +367,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   min-width: 0;
 }
 .catalog-search input::placeholder { color: var(--text-sub); font-style: italic; }
+
 .search-count {
   font-size: 11px; color: var(--text-sub);
   letter-spacing: 1.5px; text-transform: uppercase;
@@ -337,8 +376,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   white-space: nowrap;
 }
 
-/* SORT */
+/* Menu ordinamento (custom dropdown) */
 .sort-wrap { position: relative; display: inline-flex; align-items: center; flex-shrink: 0; }
+
 .sort-trigger {
   display: inline-flex; align-items: center; gap: 10px;
   background: var(--card-bg); color: var(--text-main);
@@ -358,6 +398,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   letter-spacing: 1.5px; text-transform: uppercase;
 }
 .sort-trigger .sort-value { color: var(--text-main); font-weight: 600; }
+
 .sort-menu {
   position: absolute;
   top: calc(100% + 8px); right: 0;
@@ -375,6 +416,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 .sort-wrap.open .sort-menu {
   opacity: 1; visibility: visible; transform: translateY(0);
 }
+
 .sort-option {
   display: flex; align-items: center; justify-content: space-between;
   gap: 10px; width: 100%;
@@ -394,12 +436,15 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 .sort-option .check { color: var(--accent); opacity: 0; font-weight: 700; }
 .sort-option.active .check { opacity: 1; }
 
-/* GRID PRODOTTI */
+/* ------------------------------------------------------------
+   8. GRIGLIA PRODOTTI
+   ------------------------------------------------------------ */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
 }
+
 .product-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -418,6 +463,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   }
 }
 .product-card a { display: block; }
+
 .image-container {
   width: 100%;
   aspect-ratio: 1 / 1;
@@ -426,6 +472,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   border-radius: 8px;
   background: var(--bg-soft);
 }
+
 .product-image {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -438,24 +485,38 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
     filter: saturate(1);
   }
 }
+
 .product-info { margin-bottom: 14px; }
 .product-title {
   font-size: 15px; font-weight: 500;
   margin-bottom: 6px;
   line-height: 1.35;
 }
+
+/* Etichetta materiale — con colori specifici per tipo */
 .product-material {
-  font-size: 11px; color: var(--text-sub);
+  font-size: 11px;
+  color: var(--text-sub);
   letter-spacing: 1.5px;
-  margin-bottom: 10px; text-transform: uppercase;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
+.product-material[data-material="pelle"] { color: #a07b52; }
+[data-theme="dark"] .product-material[data-material="pelle"] { color: #d4a373; }
+.product-material[data-material="lana"] { color: #8b7d6b; }
+[data-theme="dark"] .product-material[data-material="lana"] { color: #b8a68a; }
+.product-material[data-material="ottone"] { color: #b08d3f; }
+[data-theme="dark"] .product-material[data-material="ottone"] { color: #d9b062; }
+
 .product-price { font-size: 15px; font-weight: 600; color: var(--accent); }
 .product-stock {
   font-size: 12px; color: var(--text-sub);
   margin-top: 6px;
 }
 
+/* Selettore quantità + bottone aggiungi */
 .qty-row { display: flex; align-items: center; gap: 10px; }
+
 .qty-picker {
   display: inline-flex; align-items: center;
   border: 1px solid var(--border-strong);
@@ -498,7 +559,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   }
 }
 
-/* LIMITED */
+/* ------------------------------------------------------------
+   9. PAGINA LIMITED (edizione limitata)
+   ------------------------------------------------------------ */
 .limited-hero {
   padding: clamp(60px, 10vw, 100px) var(--pad-x) clamp(40px, 6vw, 60px);
   text-align: center;
@@ -525,6 +588,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   max-width: 1300px; margin: 0 auto;
   width: 100%;
 }
+
 .limited-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -543,7 +607,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   color: var(--accent); margin-bottom: 14px;
 }
 
-/* PRODUCT DETAIL */
+/* ------------------------------------------------------------
+   10. PRODUCT DETAIL
+   ------------------------------------------------------------ */
 .product-detail {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -552,6 +618,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   max-width: 1300px; margin: 0 auto;
   width: 100%;
 }
+
 .detail-image {
   width: 100%; aspect-ratio: 1;
   border-radius: var(--radius); overflow: hidden;
@@ -562,6 +629,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   height: fit-content;
 }
 .detail-image img { width: 100%; height: 100%; object-fit: cover; }
+
 .detail-info h1 {
   font-family: var(--font-serif);
   font-size: clamp(30px, 5vw, 44px);
@@ -597,7 +665,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   text-align: right;
 }
 
-/* CART DRAWER */
+/* ------------------------------------------------------------
+   11. CART DRAWER (laterale)
+   ------------------------------------------------------------ */
 .drawer-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.55);
@@ -721,7 +791,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 .checkout-btn:active { transform: scale(0.98); }
 
-/* PAGINE CONTENUTO */
+/* ------------------------------------------------------------
+   12. PAGINE CONTENUTO (about, journal, services, contact)
+   ------------------------------------------------------------ */
 .page-hero {
   padding: clamp(60px, 10vw, 100px) var(--pad-x) clamp(40px, 6vw, 60px);
   max-width: 900px;
@@ -754,6 +826,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   letter-spacing: -.5px; margin-bottom: 24px;
 }
 
+/* Griglia card generica (about, services) */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -780,6 +853,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 .info-card p { color: var(--text-sub); font-size: 14px; margin-bottom: 16px; }
 
+/* Card articolo (journal) */
 .article-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
@@ -807,7 +881,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 .article-body p { color: var(--text-sub); font-size: 13px; line-height: 1.6; }
 
-/* FORM */
+/* ------------------------------------------------------------
+   13. FORM (contatti, checkout)
+   ------------------------------------------------------------ */
 .form {
   display: flex; flex-direction: column; gap: 18px;
   max-width: 560px;
@@ -848,11 +924,11 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 .form-row textarea { resize: vertical; min-height: 120px; }
-.form-2col {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
-}
+.form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 
-/* CHECKOUT */
+/* ------------------------------------------------------------
+   14. CHECKOUT
+   ------------------------------------------------------------ */
 .checkout-layout {
   display: grid;
   grid-template-columns: 1.4fr 1fr;
@@ -907,7 +983,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 .checkout-steps .step.active { color: var(--text-main); }
 
-/* CONFIRM SCREEN */
+/* ------------------------------------------------------------
+   15. SCHERMATA CONFERMA ORDINE
+   ------------------------------------------------------------ */
 .confirm-screen {
   text-align: center;
   padding: clamp(60px, 10vw, 100px) var(--pad-x) clamp(80px, 12vw, 120px);
@@ -1031,7 +1109,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
 }
 .confirm-actions .checkout-btn { width: auto; padding: 14px 32px; }
 
-/* FOOTER */
+/* ------------------------------------------------------------
+   16. FOOTER
+   ------------------------------------------------------------ */
 .footer {
   border-top: 1px solid var(--border);
   padding: var(--pad-y) var(--pad-x) 30px;
@@ -1062,7 +1142,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   text-align: center;
 }
 
-/* TOAST */
+/* ------------------------------------------------------------
+   17. TOAST (notifiche in basso)
+   ------------------------------------------------------------ */
 .toast {
   position: fixed;
   bottom: calc(24px + env(safe-area-inset-bottom));
@@ -1097,9 +1179,220 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ------------------------------------------------------------
+   18. MODAL EDIZIONE LIMITATA
+   ------------------------------------------------------------ */
+.limited-card-trigger {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+  color: inherit;
+  font-family: inherit;
+  display: block;
+  transition: opacity .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.limited-card-trigger:active { opacity: .85; }
+
+.limited-discover {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  transition: transform .25s;
+}
+@media (hover: hover) {
+  .limited-card-trigger:hover .limited-discover { transform: translateX(4px); }
+}
+
+/* Modal overlay */
+.limited-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.limited-modal.open { display: flex; }
+
+.limited-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fade-in .25s ease-out;
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.limited-modal-panel {
+  position: relative;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 960px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+  animation: modal-pop .3s cubic-bezier(.16,1,.3,1);
+}
+@keyframes modal-pop {
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.limited-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s, border-color .2s;
+}
+.limited-modal-close:active { background: var(--accent-soft); border-color: var(--accent); }
+
+.limited-modal-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.limited-modal-image {
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius) 0 0 var(--radius);
+  min-height: 420px;
+}
+.limited-modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.limited-modal-info {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+}
+
+.limited-modal-info h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.limited-modal-material {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--text-sub);
+  margin-bottom: 20px;
+}
+
+.limited-modal-price {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.limited-modal-desc {
+  color: var(--text-sub);
+  font-size: 14px;
+  line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+.limited-modal-specs {
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 28px;
+}
+
+.limited-modal-actions {
+  margin-top: auto;
+}
+
+.limited-modal-actions .add-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  min-height: 52px;
+}
+.limited-modal-actions .add-btn:active {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+  .limited-modal { padding: 0; align-items: flex-end; }
+  .limited-modal-panel {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: var(--radius) var(--radius) 0 0;
+    animation: modal-slide-up .3s cubic-bezier(.16,1,.3,1);
+  }
+  @keyframes modal-slide-up {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .limited-modal-content {
+    grid-template-columns: 1fr;
+  }
+  .limited-modal-image {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    border-radius: var(--radius) var(--radius) 0 0;
+    min-height: 240px;
+    max-height: 320px;
+  }
+  .limited-modal-info { padding: 28px 24px 32px; }
+  .limited-modal-close { top: 12px; right: 12px; }
+}
+
 /* ============================================================
-   RESPONSIVE — LAPTOP COMPATTI (1001px – 1200px)
+   RESPONSIVE
    ============================================================ */
+
+/* ------------------------------------------------------------
+   LAPTOP COMPATTI (1001px – 1200px)
+   ------------------------------------------------------------ */
 @media (max-width: 1200px) and (min-width: 1001px) {
   .navbar { padding: 12px 28px; }
   .nav-left { gap: 20px; }
@@ -1111,9 +1404,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   .icon-btn { width: 38px; height: 38px; }
 }
 
-/* ============================================================
-   RESPONSIVE — TABLET (≤ 1024px)
-   ============================================================ */
+/* ------------------------------------------------------------
+   TABLET (≤ 1024px)
+   ------------------------------------------------------------ */
 @media (max-width: 1024px) {
   :root { --nav-height: 62px; }
 
@@ -1131,18 +1424,18 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   .detail-image { position: static; }
 }
 
-/* ============================================================
+/* ------------------------------------------------------------
    NAVBAR — hamburger solo sotto i 1000px
-   ============================================================ */
+   ------------------------------------------------------------ */
 @media (max-width: 1000px) {
   .navbar { padding: 12px var(--pad-x); }
   .nav-links { display: none; }
   .menu-toggle { display: inline-flex; }
 }
 
-/* ============================================================
-   RESPONSIVE — MOBILE (≤ 768px)
-   ============================================================ */
+/* ------------------------------------------------------------
+   MOBILE (≤ 768px)
+   ------------------------------------------------------------ */
 @media (max-width: 768px) {
   :root {
     --nav-height: 58px;
@@ -1164,6 +1457,8 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
     padding: 20px 0 clamp(40px, 8vw, 60px);
     gap: 20px;
   }
+
+  /* Sidebar filtri → chips orizzontali scrollabili */
   .sidebar {
     width: 100%;
     display: flex;
@@ -1219,6 +1514,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   .sort-trigger { width: 100%; justify-content: space-between; }
   .sort-menu { left: 0; right: 0; width: 100%; min-width: 0; }
 
+  /* Griglia prodotti: 2 colonne */
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
@@ -1231,6 +1527,7 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   .product-stock { font-size: 11px; margin-top: 4px; }
   .product-info { margin-bottom: 10px; }
 
+  /* Qty picker compatto */
   .qty-row { gap: 6px; flex-direction: column; }
   .qty-picker { width: 100%; justify-content: space-between; }
   .qty-picker button { width: 36px; height: 36px; flex-shrink: 0; }
@@ -1307,9 +1604,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   .hero-sub { line-height: 1.55; }
 }
 
-/* ============================================================
-   RESPONSIVE — SMALL MOBILE (≤ 380px)
-   ============================================================ */
+/* ------------------------------------------------------------
+   SMALL MOBILE (≤ 380px)
+   ------------------------------------------------------------ */
 @media (max-width: 380px) {
   .product-grid { grid-template-columns: 1fr; }
   .logo { font-size: 15px; letter-spacing: 2px; }
@@ -1319,18 +1616,18 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   .checkout-steps { font-size: 10px; gap: 10px; }
 }
 
-/* ============================================================
-   ORIENTAMENTO LANDSCAPE SU MOBILE
-   ============================================================ */
+/* ------------------------------------------------------------
+   LANDSCAPE SU MOBILE
+   ------------------------------------------------------------ */
 @media (max-width: 900px) and (orientation: landscape) {
   .hero-section { padding: 30px var(--pad-x) 20px; }
   .page-hero { padding: 30px var(--pad-x) 20px; }
   .mobile-nav { max-height: 60dvh; }
 }
 
-/* ============================================================
-   TOUCH: rimuovi hover su dispositivi touch
-   ============================================================ */
+/* ------------------------------------------------------------
+   TOUCH — rimuovi hover su dispositivi senza mouse
+   ------------------------------------------------------------ */
 @media (hover: none) {
   .product-card:hover { transform: none; box-shadow: none; border-color: var(--border); }
   .product-card:hover .product-image { transform: none; filter: saturate(.9); }
@@ -1342,9 +1639,9 @@ input, textarea, select { font-family: inherit; font-size: 16px; }
   .add-btn:hover { background: transparent; border-color: var(--border-strong); color: var(--text-main); }
 }
 
-/* ============================================================
+/* ------------------------------------------------------------
    STAMPA
-   ============================================================ */
+   ------------------------------------------------------------ */
 @media print {
   .navbar, .footer, .drawer-overlay, .cart-drawer, .mobile-nav,
   .sort-wrap, .catalog-search, .qty-row, .add-btn, .checkout-btn {

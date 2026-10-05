@@ -2,10 +2,11 @@
 <html lang="it" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AETHER — Objects for Mindful Workspaces</title>
-  <meta name="description" content="AETHER progetta oggetti scultorei per scrivanie consapevoli. Alluminio, ceramica e vetro fatti a mano in Italia.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#0b0b0d">
+  <meta name="description" content="AETHER progetta oggetti scultorei per scrivanie consapevoli. Alluminio, ceramica e vetro fatti a mano in Italia.">
+
+  <title>AETHER — Objects for Mindful Workspaces</title>
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="AETHER — Objects for Mindful Workspaces">
@@ -26,6 +27,9 @@
 
   <a href="#main-content" class="skip-link">Vai al contenuto principale</a>
 
+  <!-- ============================================================
+       HEADER / NAVBAR
+       ============================================================ -->
   <header class="navbar" role="banner">
     <div class="nav-left">
       <a href="index.html" class="logo" aria-label="AETHER - Home">AETHER<span>.</span></a>
@@ -54,6 +58,7 @@
     </div>
   </header>
 
+  <!-- NAVIGAZIONE MOBILE -->
   <nav id="mobile-nav" class="mobile-nav" aria-label="Navigazione mobile">
     <a href="index.html" class="active">Catalogo</a>
     <a href="limited.html">Limited</a>
@@ -63,15 +68,24 @@
     <a href="contact.html">Contatti</a>
   </nav>
 
+  <!-- ============================================================
+       MAIN
+       ============================================================ -->
   <main id="main-content">
+
+    <!-- HERO -->
     <section class="hero-section">
       <div class="hero-tag">EDIZIONE 2026 / COLLEZIONE PERMANENTE</div>
       <h1 class="hero-title">Architettura <em>per la tua mente</em>.</h1>
       <p class="hero-sub">Oggetti da scrivania scultorei in alluminio spazzolato, ceramica opaca e vetro minerale. Progettati per durare, pensati per ispirare.</p>
     </section>
 
+    <!-- LAYOUT CATALOGO -->
     <div class="main-layout">
+
+      <!-- SIDEBAR FILTRI -->
       <aside class="sidebar" aria-label="Filtri">
+        <!-- Filtro per collezione -->
         <div class="filter-block">
           <span class="filter-header">Collezione</span>
           <button class="filter-btn active" onclick="setCategory('all', this)">Tutti gli oggetti</button>
@@ -79,28 +93,38 @@
           <button class="filter-btn" onclick="setCategory('organizzazione', this)">Organizzazione</button>
           <button class="filter-btn" onclick="setCategory('audio', this)">Acoustics</button>
         </div>
+
+        <!-- Filtro per materiale -->
         <div class="filter-block">
           <span class="filter-header">Finitura</span>
           <button class="filter-btn active" onclick="setMaterial('all', this)">Tutti i materiali</button>
           <button class="filter-btn" onclick="setMaterial('alluminio', this)">Alluminio Anodizzato</button>
           <button class="filter-btn" onclick="setMaterial('ceramica', this)">Ceramica Opaca</button>
           <button class="filter-btn" onclick="setMaterial('vetro', this)">Vetro Fumè</button>
+          <button class="filter-btn" onclick="setMaterial('pelle', this)">Pelle Pieno Fiore</button>
+          <button class="filter-btn" onclick="setMaterial('lana', this)">Lana Acustica</button>
         </div>
       </aside>
 
+      <!-- AREA CONTENUTO / CATALOGO -->
       <section class="content-area" aria-label="Catalogo">
         <div class="catalog-header">
           <div class="catalog-search">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
             <input type="text" id="search-input" placeholder="Cerca tra gli oggetti..." oninput="filterProducts()" aria-label="Cerca prodotti">
             <span class="search-count" id="search-count">20 oggetti</span>
           </div>
 
+          <!-- MENU ORDINAMENTO -->
           <div class="sort-wrap">
             <button class="sort-trigger" onclick="toggleSortMenu()" aria-haspopup="true" aria-expanded="false">
               <span class="sort-label">Ordina</span>
               <span class="sort-value" id="sort-value">Predefinito</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
             </button>
             <div class="sort-menu" role="menu">
               <button class="sort-option active" data-value="default" onclick="setSort('default')">Predefinito <span class="check">✓</span></button>
@@ -110,11 +134,16 @@
             </div>
           </div>
         </div>
+
+        <!-- GRIGLIA PRODOTTI (popolata da JS) -->
         <div class="product-grid" id="product-grid"></div>
       </section>
     </div>
   </main>
 
+  <!-- ============================================================
+       DRAWER CARRELLO (laterale)
+       ============================================================ -->
   <div class="drawer-overlay" id="overlay" onclick="toggleCart()"></div>
   <aside class="cart-drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Carrello" aria-hidden="true">
     <div class="cart-header">
@@ -129,6 +158,9 @@
     </div>
   </aside>
 
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
   <footer class="footer" role="contentinfo">
     <div>
       <a href="index.html" class="logo" style="margin-bottom: 14px; display: inline-block;">AETHER<span>.</span></a>

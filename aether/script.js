@@ -1,40 +1,50 @@
 /* ============================================================
    AETHER — script.js
+   Catalogo prodotti + carrello, checkout, contatti
    ============================================================ */
 
-/* ---------- DATI ---------- */
+/* ------------------------------------------------------------
+   DATI PRODOTTI — Collezione permanente (20 oggetti)
+   ------------------------------------------------------------ */
 const products = [
-  { id: 1,  name: "Lampada Monolite Lumina",   category: "illuminazione",  material: "alluminio", price: 240, stock: 12, img: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=800&q=80", desc: "Lampada da tavolo scultorea in alluminio spazzolato con diffusore in vetro opalino. Luce calda regolabile." },
-  { id: 2,  name: "Lampada ad Arco Halo",      category: "illuminazione",  material: "alluminio", price: 310, stock: 7,  img: "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&q=80", desc: "Arco luminoso a LED integrati, regolabile in intensità e temperatura colore." },
-  { id: 3,  name: "Applique Ceramica Ember",   category: "illuminazione",  material: "ceramica",  price: 190, stock: 15, img: "https://images.unsplash.com/photo-1543198126-a8ad8e47fb22?w=800&q=80", desc: "Applique in ceramica opaca con finitura sabbia e luce calda diffusa." },
-  { id: 4,  name: "Sospensione Vetro Fumé",    category: "illuminazione",  material: "vetro",     price: 285, stock: 9,  img: "https://images.unsplash.com/photo-1524634126442-357e0eac3c14?w=800&q=80", desc: "Sospensione in vetro fumè soffiato a bocca, con cavo in tessuto intrecciato." },
-  { id: 5,  name: "Vaso Portapenne Ceramica",  category: "organizzazione", material: "ceramica",  price: 85,  stock: 24, img: "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?w=800&q=80", desc: "Vaso portapenne tornito a mano in ceramica opaca, smalto avorio." },
-  { id: 6,  name: "Supporto Laptop Anodizzato",category: "organizzazione", material: "alluminio", price: 110, stock: 18, img: "https://images.unsplash.com/photo-1625842268584-8f3296236761?w=800&q=80", desc: "Supporto per laptop in alluminio anodizzato, inclinazione fissa 15°, gommini antiscivolo." },
-  { id: 7,  name: "Vassoio Scrivania Grid",    category: "organizzazione", material: "alluminio", price: 95,  stock: 14, img: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80", desc: "Vassoio modulare per piccoli oggetti, con inserti in feltro grigio." },
-  { id: 8,  name: "Portapenne Vetro Minerale", category: "organizzazione", material: "vetro",     price: 60,  stock: 30, img: "https://images.unsplash.com/photo-1567016432779-094069958ea5?w=800&q=80", desc: "Portapenne in vetro minerale fumè, base in sughero naturale." },
-  { id: 9,  name: "Cartelletta Sospesa Flottante", category: "organizzazione", material: "alluminio", price: 145, stock: 11, img: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80", desc: "Cartelletta portadocumenti sospesa, design minimale, capacità 200 fogli." },
-  { id: 10, name: "Fermacarte Ceramica",       category: "organizzazione", material: "ceramica",  price: 45,  stock: 40, img: "https://images.unsplash.com/photo-1493552152660-f915ab47ae9d?w=800&q=80", desc: "Fermacarte in ceramica smaltata, peso calibrato 380g." },
-  { id: 11, name: "Tappetino Scrivania Pelle", category: "organizzazione", material: "ceramica",  price: 130, stock: 8,  img: "https://images.unsplash.com/photo-1611262588024-d12430b98920?w=800&q=80", desc: "Tappetino da scrivania in pelle pieno fiore, cuciture a mano." },
-  { id: 12, name: "Portabiglietti Ottone",     category: "organizzazione", material: "alluminio", price: 70,  stock: 22, img: "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=800&q=80", desc: "Portabiglietti in ottone brunito, finitura opaca." },
-  { id: 13, name: "Blocco Sonoro Resonance",   category: "audio",          material: "vetro",     price: 320, stock: 6,  img: "https://images.unsplash.com/photo-1545454675-3531b543be5d?w=800&q=80", desc: "Diffusore acustico passivo in vetro, ideale per ambienti riverberanti." },
-  { id: 14, name: "Pannello Fonoassorbente Echo", category: "audio",       material: "ceramica",  price: 130, stock: 16, img: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80", desc: "Pannello fonoassorbente con cornice in ceramica, 40×40 cm." },
-  { id: 15, name: "Cubo Acustico Silenzioso",  category: "audio",          material: "alluminio", price: 175, stock: 13, img: "https://images.unsplash.com/photo-1558537348-c0f8e733989d?w=800&q=80", desc: "Cubo acustico in alluminio con microfori calibrati, riduce l'eco del 30%." },
-  { id: 16, name: "Colonna Sonora Vetro Fumé", category: "audio",          material: "vetro",     price: 260, stock: 5,  img: "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=800&q=80", desc: "Colonna sonora in vetro fumè, altezza 40 cm, base in ottone." },
-  { id: 17, name: "Piastrella Acustica Lana",  category: "audio",          material: "ceramica",  price: 90,  stock: 20, img: "https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&q=80", desc: "Piastrella acustica in lana compressa, installazione a parete." },
-  { id: 18, name: "Supporto Cuffie Titanio",   category: "audio",          material: "alluminio", price: 195, stock: 10, img: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&q=80", desc: "Supporto per cuffie in titanio spazzolato, design scultoreo." },
-  { id: 19, name: "Dock Cavi Ceramica Avorio", category: "organizzazione", material: "ceramica",  price: 55,  stock: 28, img: "https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&q=80", desc: "Dock per cavi in ceramica avorio, con canale interno per il passaggio." },
-  { id: 20, name: "Diffusore Vetro Fumé",      category: "audio",          material: "vetro",     price: 145, stock: 17, img: "https://images.unsplash.com/photo-1602928298849-325cec8771c0?w=800&q=80", desc: "Diffusore per oli essenziali in vetro fumè, con base in legno." },
+  { id: 1,  name: "Lampada Monolite Lumina",   category: "illuminazione",  material: "alluminio", price: 240, stock: 12, img: "img/lampada-monolite-lumina.jpg", desc: "Lampada da tavolo scultorea in alluminio spazzolato con diffusore in vetro opalino. Luce calda regolabile." },
+  { id: 2,  name: "Lampada ad Arco Halo",      category: "illuminazione",  material: "alluminio", price: 310, stock: 7,  img: "img/lampada-ad-arco-halo.png", desc: "Arco luminoso a LED integrati, regolabile in intensità e temperatura colore." },
+  { id: 3,  name: "Applique Ceramica Ember",   category: "illuminazione",  material: "ceramica",  price: 190, stock: 15, img: "img/Applique-Ceramica-Ember.png", desc: "Applique in ceramica opaca con finitura ambra e luce calda diffusa." },
+  { id: 4,  name: "Sospensione Vetro Fumé",    category: "illuminazione",  material: "vetro",     price: 285, stock: 9,  img: "img/Sospensione-Vetro-Fume.png", desc: "Sospensione in vetro fumè soffiato a bocca, con cavo in tessuto intrecciato." },
+
+  { id: 5,  name: "Vaso Portapenne Ceramica",  category: "organizzazione", material: "ceramica",  price: 85,  stock: 24, img: "img/Vaso-Portapenne-Ceramica.png", desc: "Vaso portapenne tornito a mano in ceramica opaca, smalto avorio." },
+  { id: 6,  name: "Supporto Laptop Anodizzato",category: "organizzazione", material: "alluminio", price: 110, stock: 18, img: "img/Supporto-Laptop-Anodizzato.png", desc: "Supporto per laptop in alluminio anodizzato, inclinazione regolabile, gommini antiscivolo." },
+  { id: 7,  name: "Vassoio Scrivania Grid",    category: "organizzazione", material: "alluminio", price: 95,  stock: 14, img: "img/Vassoio-Scrivania-Grid.png", desc: "Vassoio modulare per piccoli oggetti, con inserti in feltro grigio." },
+  { id: 8,  name: "Portapenne Vetro Minerale", category: "organizzazione", material: "vetro",     price: 60,  stock: 30, img: "img/Portapenne-Vetro-Minerale.png", desc: "Portapenne in vetro minerale fumè." },
+  { id: 9,  name: "Cartelletta Sospesa Flottante", category: "organizzazione", material: "alluminio", price: 120, stock: 11, img: "img/Cartelletta-Sospesa-Flottante.png", desc: "Cartelletta portadocumenti sospesa, design minimale, capacità 200 fogli." },
+  { id: 10, name: "Fermacarte Ceramica",       category: "organizzazione", material: "ceramica",  price: 45,  stock: 40, img: "img/Fermacarte-Ceramica.png", desc: "Fermacarte in ceramica smaltata, peso calibrato 380g." },
+  { id: 11, name: "Tappetino Scrivania Pelle", category: "organizzazione", material: "pelle",     price: 130, stock: 8,  img: "img/Tappetino-Scrivania-Pelle.png", desc: "Tappetino da scrivania in pelle marrone pieno fiore, cuciture a mano." },
+  { id: 12, name: "Portabiglietti Metallico",  category: "organizzazione", material: "alluminio", price: 45,  stock: 22, img: "img/Portabiglietti.png", desc: "Portabiglietti in metallo spazzolato con inserto nero, finitura opaca." },
+
+  { id: 13, name: "Stabilizzatore Resonance 5", category: "audio",         material: "alluminio", price: 220, stock: 6,  img: "img/Blocco-Sonoro-Resonance.png", desc: "Peso stabilizzatore in alluminio anodizzato nero con anima in grafite, ideale per giradischi." },
+  { id: 14, name: "Pannello Fonoassorbente Echo", category: "audio",       material: "alluminio", price: 130, stock: 16, img: "img/Pannello-Fonoassorbente-Echo.png", desc: "Pannello fonoassorbente rigido con rivestimento tecnico, 40×40 cm, riduce l'eco del 30%." },
+  { id: 15, name: "Cubi Acustici Silenziosi",  category: "audio",          material: "lana",      price: 65,  stock: 13, img: "img/Cubo-Acustico-Silenzioso.png", desc: "Cubi acustici in schiuma ad alta densità, smorzano le riflessioni primarie." },
+  { id: 16, name: "Diffusore Vetro Rosso",     category: "audio",          material: "vetro",     price: 175, stock: 5,  img: "img/Diffusore-Vetro-Fume.png", desc: "Diffusore per ambiente in vetro rosso rubino con bastoncini in rattan nero." },
+  { id: 17, name: "Isolatori Ceramica Bianca", category: "audio",          material: "ceramica",  price: 55,  stock: 20, img: "img/Piastrella-Acustica-Lana.png", desc: "Coppia di isolatori in ceramica smaltata bianca per cavi e supporti audio." },
+  { id: 18, name: "Supporto Cuffie Alluminio", category: "audio",          material: "alluminio", price: 165, stock: 10, img: "img/Supporto-Cuffie-Titanio.png", desc: "Supporto per cuffie in alluminio nero opaco con base in metallo pesante." },
+  { id: 19, name: "Organizer Cavi Sottoscrivania", category: "audio",      material: "alluminio", price: 45,  stock: 28, img: "img/Dock-Cavi.png", desc: "Rastrelliera sottoscrivania in acciaio verniciato bianco, con ganci per cavi." },
+  { id: 20, name: "Vaso Marmorizzato",         category: "organizzazione", material: "ceramica",  price: 75,  stock: 17, img: "img/Vaso-Marmorizzato.png", desc: "Vaso cilindrico in ceramica marmorizzata bianca, ideale come portapenne o organizer." },
 ];
 
+/* ------------------------------------------------------------
+   EDIZIONE LIMITATA (3 oggetti numerati)
+   ------------------------------------------------------------ */
 const limitedProducts = [
-  { id: 101, name: "Aether N. 01 — Monolite",  category: "illuminazione", material: "alluminio", price: 890,  stock: 3, img: "https://images.unsplash.com/photo-1540932239986-30128078f3c5?w=800&q=80", desc: "Lampada scultorea in alluminio anodizzato nero, tiratura di 50 esemplari numerati.", edition: "ED. 01 / 50" },
-  { id: 102, name: "Aether N. 02 — Vaso",      category: "organizzazione", material: "ceramica",  price: 640,  stock: 2, img: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=800&q=80", desc: "Vaso scultoreo in ceramica raku, smalto ottone, tiratura di 30 esemplari.", edition: "ED. 02 / 30" },
-  { id: 103, name: "Aether N. 03 — Risonanza", category: "audio",          material: "vetro",     price: 1180, stock: 1, img: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=800&q=80", desc: "Diffusore acustico in vetro fumè e ottone brunito, tiratura di 20 esemplari.", edition: "ED. 03 / 20" },
+  { id: 101, name: "Aether N. 01 — Monolite",  category: "illuminazione", material: "ceramica",  price: 890,  stock: 3, img: "img/Aether-01-Monolite.png", desc: "Scultura monolitica in ceramica raku con venature naturali, tiratura di 50 esemplari numerati.", edition: "ED. 01 / 50" },
+  { id: 102, name: "Aether N. 02 — Vaso",      category: "organizzazione", material: "vetro",     price: 640,  stock: 2, img: "img/Aether-02-Vaso.png", desc: "Vaso scultoreo in vetro soffiato a bocca con decoro a rete bianca, tiratura di 30 esemplari.", edition: "ED. 02 / 30" },
+  { id: 103, name: "Aether N. 03 — Amplificatore", category: "audio",      material: "alluminio", price: 1180, stock: 1, img: "img/Aether-03-Risonanza.png", desc: "Amplificatore integrato in alluminio spazzolato, finitura bicolore argento/arancio, tiratura di 20 esemplari.", edition: "ED. 03 / 20" },
 ];
 
 const FALLBACK_IMG = "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&q=80";
 
-/* ---------- STATO ---------- */
+/* ------------------------------------------------------------
+   STATO GLOBALE
+   ------------------------------------------------------------ */
 let selectedCategory = 'all';
 let selectedMaterial = 'all';
 let searchQuery = '';
@@ -53,7 +63,9 @@ const sortLabels = {
   'name': 'Nome A–Z'
 };
 
-/* ---------- HELPER ---------- */
+/* ------------------------------------------------------------
+   HELPER
+   ------------------------------------------------------------ */
 const allProducts = () => [...products, ...limitedProducts];
 const findProduct = id => allProducts().find(p => p.id === id);
 const fmt = n => `€${n.toLocaleString('it-IT')}`;
@@ -79,7 +91,9 @@ function showToast(message, type = 'info') {
   }, 2800);
 }
 
-/* ---------- FILTRI ---------- */
+/* ------------------------------------------------------------
+   FILTRI E ORDINAMENTO
+   ------------------------------------------------------------ */
 function getFilteredProducts() {
   let list = products.filter(p => {
     const mc = selectedCategory === 'all' || p.category === selectedCategory;
@@ -144,7 +158,9 @@ document.addEventListener('click', (e) => {
   }
 });
 
-/* ---------- RENDER CATALOGO ---------- */
+/* ------------------------------------------------------------
+   RENDER CATALOGO
+   ------------------------------------------------------------ */
 function renderProducts() {
   const grid = document.getElementById('product-grid');
   if (!grid) return;
@@ -185,7 +201,9 @@ function renderProducts() {
   `).join('');
 }
 
-/* ---------- RENDER LIMITED ---------- */
+/* ------------------------------------------------------------
+   RENDER EDIZIONE LIMITATA (card cliccabili → modal dettaglio)
+   ------------------------------------------------------------ */
 function renderLimited() {
   const grid = document.getElementById('limited-grid');
   if (!grid) return;
@@ -193,17 +211,24 @@ function renderLimited() {
   grid.innerHTML = limitedProducts.map(p => `
     <div class="limited-card">
       <div class="edition-num">${esc(p.edition)}</div>
-      <div class="image-container">
-        <img src="${esc(p.img)}" alt="${esc(p.name)}" class="product-image" loading="lazy" decoding="async"
-             onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
-      </div>
-      <div class="product-info">
-        <div class="product-title">${esc(p.name)}</div>
-        <div class="product-material">${esc(p.material)}</div>
-        <p style="color: var(--text-sub); font-size: 13px; margin: 10px 0 16px;">${esc(p.desc)}</p>
-        <div class="product-price">${fmt(p.price)}</div>
-        <div class="product-stock">Solo ${p.stock} disponibili</div>
-      </div>
+
+      <button type="button" class="limited-card-trigger"
+              onclick="openLimitedModal(${p.id})"
+              aria-label="Scopri ${esc(p.name)}">
+        <div class="image-container">
+          <img src="${esc(p.img)}" alt="${esc(p.name)}" class="product-image" loading="lazy" decoding="async"
+               onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">${esc(p.name)}</div>
+          <div class="product-material">${esc(p.material)}</div>
+          <p style="color: var(--text-sub); font-size: 13px; margin: 10px 0 16px;">${esc(p.desc)}</p>
+          <div class="product-price">${fmt(p.price)}</div>
+          <div class="product-stock">Solo ${p.stock} disponibili</div>
+          <span class="limited-discover">Scopri l'edizione →</span>
+        </div>
+      </button>
+
       <div class="qty-row" style="margin-top: 16px;">
         <div class="qty-picker">
           <button type="button" onclick="changeQty(${p.id}, -1, event)" aria-label="Riduci">−</button>
@@ -217,7 +242,92 @@ function renderLimited() {
   `).join('');
 }
 
-/* ---------- QUANTITÀ ---------- */
+/* ------------------------------------------------------------
+   MODAL EDIZIONE LIMITATA
+   ------------------------------------------------------------ */
+function openLimitedModal(id) {
+  const p = limitedProducts.find(x => x.id === id);
+  if (!p) return;
+
+  // Crea il modal se non esiste
+  let modal = document.getElementById('limited-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'limited-modal';
+    modal.className = 'limited-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+      <div class="limited-modal-backdrop" onclick="closeLimitedModal()"></div>
+      <div class="limited-modal-panel" role="document">
+        <button type="button" class="limited-modal-close" onclick="closeLimitedModal()" aria-label="Chiudi">&times;</button>
+        <div class="limited-modal-content" id="limited-modal-content"></div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+
+    // ESC per chiudere
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLimitedModal();
+    });
+  }
+
+  const content = document.getElementById('limited-modal-content');
+  content.innerHTML = `
+    <div class="limited-modal-image">
+      <img src="${esc(p.img)}" alt="${esc(p.name)}"
+           onerror="this.onerror=null;this.src='${FALLBACK_IMG}'">
+    </div>
+    <div class="limited-modal-info">
+      <div class="hero-tag">${esc(p.edition)}</div>
+      <h2>${esc(p.name)}</h2>
+      <div class="limited-modal-material">${esc(p.material.toUpperCase())}</div>
+      <div class="limited-modal-price">${fmt(p.price)}</div>
+      <p class="limited-modal-desc">${esc(p.desc)}</p>
+
+      <div class="limited-modal-specs">
+        <div class="spec-row"><span>Tiratura</span><span>${esc(p.edition)}</span></div>
+        <div class="spec-row"><span>Materiale</span><span>${esc(p.material)}</span></div>
+        <div class="spec-row"><span>Categoria</span><span>${esc(p.category)}</span></div>
+        <div class="spec-row"><span>Disponibilità</span><span>${p.stock} pezzi rimasti</span></div>
+        <div class="spec-row"><span>Certificato</span><span>Scheda d'autore firmata</span></div>
+        <div class="spec-row"><span>Spedizione</span><span>Gratuita in EU</span></div>
+      </div>
+
+      <div class="limited-modal-actions">
+        <button type="button" class="add-btn" onclick="addFromModal(${p.id})">
+          Aggiungi alla selezione
+        </button>
+      </div>
+    </div>
+  `;
+
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLimitedModal() {
+  const modal = document.getElementById('limited-modal');
+  if (!modal || !modal.classList.contains('open')) return;
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function addFromModal(id) {
+  addToCartWithQty(id, true);
+  closeLimitedModal();
+}
+
+window.openLimitedModal = openLimitedModal;
+window.closeLimitedModal = closeLimitedModal;
+window.addFromModal = addFromModal;
+
+/* ------------------------------------------------------------
+   GESTIONE QUANTITÀ
+   ------------------------------------------------------------ */
 function setQty(id, val) {
   const input = document.getElementById(`qty-${id}`);
   if (!input) return;
@@ -237,7 +347,9 @@ function changeQty(id, delta, event) {
   setQty(id, current + delta);
 }
 
-/* ---------- DETTAGLIO PRODOTTO ---------- */
+/* ------------------------------------------------------------
+   DETTAGLIO PRODOTTO (product.html)
+   ------------------------------------------------------------ */
 function renderProductDetail() {
   const container = document.getElementById('product-detail');
   if (!container) return;
@@ -290,7 +402,9 @@ function renderProductDetail() {
   `;
 }
 
-/* ---------- CARRELLO ---------- */
+/* ------------------------------------------------------------
+   CARRELLO
+   ------------------------------------------------------------ */
 function addToCartWithQty(id, isLimited = false) {
   const input = document.getElementById(`qty-${id}`);
   const qty = input ? Math.max(1, parseInt(input.value) || 1) : 1;
@@ -374,7 +488,9 @@ function updateCart() {
   renderCheckoutSummary();
 }
 
-/* ---------- DRAWER ---------- */
+/* ------------------------------------------------------------
+   DRAWER CARRELLO
+   ------------------------------------------------------------ */
 let lastFocusedEl = null;
 
 function toggleCart(forceOpen = false) {
@@ -407,7 +523,9 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-/* ---------- MENU MOBILE ---------- */
+/* ------------------------------------------------------------
+   MENU MOBILE
+   ------------------------------------------------------------ */
 function toggleMobileNav() {
   const nav = document.getElementById('mobile-nav');
   const btn = document.querySelector('.menu-toggle');
@@ -417,7 +535,9 @@ function toggleMobileNav() {
   btn?.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
 }
 
-/* ---------- INVIO → CAMPO SUCCESSIVO ---------- */
+/* ------------------------------------------------------------
+   NAVIGAZIONE CON INVIO
+   ------------------------------------------------------------ */
 function focusNextOnEnter(formId) {
   const form = document.getElementById(formId);
   if (!form) return;
@@ -458,7 +578,9 @@ function focusNextOnEnter(formId) {
   });
 }
 
-/* ---------- CHECKOUT ---------- */
+/* ------------------------------------------------------------
+   CHECKOUT
+   ------------------------------------------------------------ */
 function renderCheckoutSummary() {
   const summary = document.getElementById('checkout-summary');
   if (!summary) return;
@@ -589,7 +711,9 @@ function placeOrder(e) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ---------- CONTATTI ---------- */
+/* ------------------------------------------------------------
+   CONTATTI
+   ------------------------------------------------------------ */
 function submitContact(e) {
   if (e) e.preventDefault();
 
@@ -650,21 +774,19 @@ function submitContact(e) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-/* ---------- THEME ---------- */
+/* ------------------------------------------------------------
+   TEMA CHIARO/SCURO
+   ------------------------------------------------------------ */
 function initTheme() {
   let saved = null;
   try { saved = localStorage.getItem('aether-theme'); } catch (_) {}
-
-  // Primo accesso (nessun valore salvato): tema chiaro
-  // Accessi successivi: tema salvato dall'utente
-  const theme = saved || 'light';
-
+  const theme = saved || 'dark';
   document.documentElement.setAttribute('data-theme', theme);
   updateThemeIcon(theme);
 }
 
 function toggleTheme() {
-  const cur = document.documentElement.getAttribute('data-theme') || 'light';
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
   const next = cur === 'dark' ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   safeSet('aether-theme', next);
@@ -679,13 +801,14 @@ function updateThemeIcon(theme) {
     : `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
 }
 
-/* Salva il tema alla chiusura della pagina (ridondanza di sicurezza) */
 window.addEventListener('beforeunload', () => {
-  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
   safeSet('aether-theme', current);
 });
 
-/* ---------- INIT ---------- */
+/* ------------------------------------------------------------
+   INIT
+   ------------------------------------------------------------ */
 initTheme();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -697,3 +820,22 @@ document.addEventListener('DOMContentLoaded', () => {
   focusNextOnEnter('checkout-form');
   focusNextOnEnter('contact-form');
 });
+
+/* ------------------------------------------------------------
+   ESPOSIZIONE GLOBALE (per onclick inline)
+   ------------------------------------------------------------ */
+window.setCategory = setCategory;
+window.setMaterial = setMaterial;
+window.filterProducts = filterProducts;
+window.toggleSortMenu = toggleSortMenu;
+window.setSort = setSort;
+window.changeQty = changeQty;
+window.setQty = setQty;
+window.addToCartWithQty = addToCartWithQty;
+window.removeFromCart = removeFromCart;
+window.changeCartQty = changeCartQty;
+window.toggleCart = toggleCart;
+window.toggleMobileNav = toggleMobileNav;
+window.toggleTheme = toggleTheme;
+window.placeOrder = placeOrder;
+window.submitContact = submitContact;
