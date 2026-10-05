@@ -132,50 +132,20 @@ button {
 
 /* ---------- BRAND / LOGO ---------- */
 .brand-logo {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    transition: opacity 0.25s ease, color 0.35s ease;
+    flex-shrink: 0;
+    line-height: 1;
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    color: var(--text-primary);
-    transition: opacity 0.25s ease;
-    flex-shrink: 0;
-    text-decoration: none;
 }
 
 .brand-logo:hover {
-    opacity: 0.8;
-}
-
-.logo-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: 1.5px solid var(--text-primary);
-    font-family: var(--font-heading);
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-    color: var(--text-primary);
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    flex-shrink: 0;
-}
-
-.brand-logo:hover .logo-mark {
-    background-color: var(--accent);
-    border-color: var(--accent);
-    color: #ffffff;
-}
-
-.logo-text {
-    font-family: var(--font-heading);
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
-    white-space: nowrap;
-    transition: color 0.35s ease;
+    opacity: 0.7;
 }
 
 .accent-dot {
@@ -746,14 +716,8 @@ button {
         font-size: 0.85rem;
     }
 
-    .logo-text {
-        display: none;
-    }
-
-    .logo-mark {
-        width: 34px;
-        height: 34px;
-        font-size: 0.75rem;
+    .brand-logo {
+        font-size: 1.2rem;
     }
 
     .skills-columns {
@@ -800,6 +764,9 @@ button {
     }
     .nav-menu a {
         font-size: 0.8rem;
+    }
+    .brand-logo {
+        font-size: 1.1rem;
     }
     .theme-toggle {
         width: 54px;
