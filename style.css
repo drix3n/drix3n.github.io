@@ -547,6 +547,8 @@ button {
     text-align: center;
     transition: var(--transition), background-color 0.35s ease, border-color 0.35s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    /* Importante: impedisce che contenuti troppo larghi allarghino la card */
+    overflow: hidden;
 }
 
 .contact-title {
@@ -565,19 +567,27 @@ button {
     margin-bottom: 40px;
 }
 
+/* =========================================================
+   EMAIL — La dimensione del font viene gestita da JavaScript
+   per garantire che il testo stia SEMPRE su una riga sola.
+   ========================================================= */
 .contact-email {
-    display: inline-block;
+    display: block;
     font-family: var(--font-heading);
-    font-size: clamp(1rem, 2.5vw, 2.2rem);
+    font-size: clamp(1rem, 2.5vw, 2.2rem); /* punto di partenza */
     font-weight: 700;
     color: var(--text-primary);
     border-bottom: 2px solid var(--accent);
     padding-bottom: 4px;
-    transition: var(--transition), border-color 0.35s ease;
+    transition: color 0.35s ease, border-color 0.35s ease;
     margin-bottom: 60px;
+    margin-left: auto;
+    margin-right: auto;
     letter-spacing: -0.01em;
     white-space: nowrap;
     max-width: 100%;
+    text-align: center;
+    line-height: 1.2;
 }
 
 .contact-email:hover {
@@ -695,14 +705,12 @@ button {
         padding: 40px 20px;
     }
 
+    /* L'email mantiene nowrap: la dimensione viene gestita da JS */
     .contact-email {
-        font-size: clamp(0.75rem, 3.8vw, 1rem);
         white-space: nowrap;
         display: block;
         width: 100%;
         text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
         margin-bottom: 40px;
     }
 
