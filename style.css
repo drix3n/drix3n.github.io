@@ -350,7 +350,7 @@ button {
 }
 
 /* ==========================================================================
-   2. Projects Section
+   2. Projects Section — CARTA CLICCABILE INTERA
    ========================================================================== */
 .projects {
     padding: 120px 0;
@@ -365,6 +365,7 @@ button {
     gap: 32px;
 }
 
+/* La card è un <a>, quindi tutto è cliccabile */
 .project-item {
     display: grid;
     grid-template-columns: 200px 1fr;
@@ -375,12 +376,21 @@ button {
     padding: 40px;
     transition: var(--transition), background-color 0.35s ease, border-color 0.35s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+    position: relative;
 }
 
 .project-item:hover {
     border-color: var(--border-strong);
     background-color: var(--bg-surface-hover);
     transform: translateY(-3px);
+}
+
+.project-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
 }
 
 .project-meta {
@@ -473,6 +483,7 @@ button {
     background-color: rgba(255, 255, 255, 0.04);
 }
 
+/* CTA visiva (non più link separato) */
 .project-link {
     display: inline-flex;
     align-items: center;
@@ -488,7 +499,7 @@ button {
     transition: transform 0.2s ease;
 }
 
-.project-link:hover .arrow {
+.project-item:hover .project-link .arrow {
     transform: translateX(5px);
 }
 
