@@ -68,10 +68,20 @@ html {
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.35s ease, color 0.35s ease;
     scroll-padding-top: 100px;
+    color-scheme: light;
+    min-height: 100%;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
 }
 
 body {
     overflow-x: hidden;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    transition: background-color 0.35s ease, color 0.35s ease;
+    min-height: 100vh;
 }
 
 .container {
@@ -125,39 +135,52 @@ button {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1rem;
-    letter-spacing: -0.01em;
     color: var(--text-primary);
-    transition: opacity 0.25s ease, color 0.35s ease;
+    transition: opacity 0.25s ease;
     flex-shrink: 0;
+    text-decoration: none;
 }
 
 .brand-logo:hover {
-    opacity: 0.75;
+    opacity: 0.8;
 }
 
-.logo-svg {
-    width: auto;
-    height: 32px;
-    display: block;
-    overflow: visible;
+.logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1.5px solid var(--text-primary);
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     color: var(--text-primary);
-    transition: color 0.35s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    flex-shrink: 0;
 }
 
-.logo-dot {
-    fill: var(--accent);
-    transition: fill 0.35s ease;
+.brand-logo:hover .logo-mark {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
 }
 
 .logo-text {
-    display: inline-block;
+    font-family: var(--font-heading);
     font-size: 0.95rem;
     font-weight: 600;
     letter-spacing: -0.01em;
+    color: var(--text-primary);
     white-space: nowrap;
+    transition: color 0.35s ease;
+}
+
+.accent-dot {
+    color: var(--accent);
+    transition: color 0.35s ease;
 }
 
 /* ---------- NAV ---------- */
@@ -727,8 +750,10 @@ button {
         display: none;
     }
 
-    .logo-svg {
-        height: 28px;
+    .logo-mark {
+        width: 34px;
+        height: 34px;
+        font-size: 0.75rem;
     }
 
     .skills-columns {
