@@ -1,12 +1,5 @@
-<<<<<<< HEAD
 User-agent: *
 Allow: /
 Disallow: /prenotazione.html
 
-=======
-User-agent: *
-Allow: /
-Disallow: /prenotazione.html
-
->>>>>>> d5ec3b6ccd9e867f9e5f631224cea2b7bdabc631
 Sitemap: https://aurasuites.example.com/sitemap.xml
