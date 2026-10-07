@@ -1,21 +1,23 @@
 :root {
-    --bg-main: #FAFAF9;
+    --bg-main: #FAFAF8;
     --bg-surface: #FFFFFF;
-    --bg-surface-hover: #F5F5F4;
+    --bg-surface-hover: #F4F4F1;
 
-    --text-primary: #1C1917;
-    --text-secondary: #57534E;
-    --text-muted: #87837E;
+    --text-primary: #14181F;
+    --text-secondary: #4B5563;
+    --text-muted: #9099A8;
 
-    --border-subtle: #E7E5E4;
-    --border-strong: #D6D3D1;
+    --border-subtle: #E6E4DF;
+    --border-strong: #CFCCC5;
 
-    --accent: #2563EB;
-    --accent-glow: rgba(37, 99, 235, 0.08);
+    --accent: #3B5B7A;
+    --accent-glow: rgba(59, 91, 122, 0.07);
+    --accent-soft: rgba(59, 91, 122, 0.12);
 
-    --header-bg: rgba(250, 250, 249, 0.85);
-    --toggle-bg: #E7E5E4;
-    --toggle-ball: #2563EB;
+    --header-bg: rgba(250, 250, 248, 0.82);
+    --toggle-track: #E6E4DF;
+    --toggle-thumb: #FFFFFF;
+    --toggle-icon: #3B5B7A;
 
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -25,23 +27,25 @@
 }
 
 [data-theme="dark"] {
-    --bg-main: #050507;
-    --bg-surface: #0F0F14;
-    --bg-surface-hover: #181822;
+    --bg-main: #0E1117;
+    --bg-surface: #161A22;
+    --bg-surface-hover: #1E232D;
 
-    --text-primary: #F4F4F6;
-    --text-secondary: #A0A0B0;
-    --text-muted: #626274;
+    --text-primary: #EDEEF1;
+    --text-secondary: #A5ACB8;
+    --text-muted: #6B7280;
 
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.2);
+    --border-subtle: rgba(237, 238, 241, 0.08);
+    --border-strong: rgba(237, 238, 241, 0.18);
 
-    --accent: #10B981;
-    --accent-glow: rgba(16, 185, 129, 0.15);
+    --accent: #8AAFC9;
+    --accent-glow: rgba(138, 175, 201, 0.10);
+    --accent-soft: rgba(138, 175, 201, 0.16);
 
-    --header-bg: rgba(5, 5, 7, 0.85);
-    --toggle-bg: #181822;
-    --toggle-ball: #10B981;
+    --header-bg: rgba(14, 17, 23, 0.82);
+    --toggle-track: #2A2F3A;
+    --toggle-thumb: #0E1117;
+    --toggle-icon: #8AAFC9;
 }
 
 * {
@@ -58,7 +62,7 @@ html {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    transition: background-color 0.35s ease, color 0.35s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
     scroll-padding-top: 100px;
     color-scheme: light;
     min-height: 100%;
@@ -72,7 +76,7 @@ body {
     overflow-x: hidden;
     background-color: var(--bg-main);
     color: var(--text-primary);
-    transition: background-color 0.35s ease, color 0.35s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
     min-height: 100vh;
 }
 
@@ -105,11 +109,11 @@ button {
     width: 100%;
     z-index: 100;
     background: var(--header-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
     border-bottom: 1px solid var(--border-subtle);
     padding: 20px 0;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease, border-color 0.35s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .nav-container {
@@ -125,7 +129,7 @@ button {
     font-size: 1.35rem;
     letter-spacing: -0.02em;
     color: var(--text-primary);
-    transition: opacity 0.25s ease, color 0.35s ease;
+    transition: opacity 0.25s ease, color 0.4s ease;
     flex-shrink: 0;
     line-height: 1;
     display: inline-flex;
@@ -138,7 +142,7 @@ button {
 
 .accent-dot {
     color: var(--accent);
-    transition: color 0.35s ease;
+    transition: color 0.4s ease;
 }
 
 .nav-right {
@@ -163,45 +167,112 @@ button {
     color: var(--text-primary);
 }
 
+/* =========================================================
+   THEME TOGGLE — Redesign elegante
+   ========================================================= */
 .theme-toggle {
     position: relative;
-    width: 62px;
-    height: 32px;
-    border-radius: 20px;
-    background-color: var(--toggle-bg);
-    border: 1px solid var(--border-strong);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6px;
-    cursor: pointer;
-    transition: var(--transition);
+    width: 56px;
+    height: 30px;
+    padding: 0;
+    border: none;
+    background: transparent;
     outline: none;
     flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.theme-icon {
-    font-size: 0.85rem;
-    user-select: none;
-    z-index: 1;
+.toggle-track {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--toggle-track);
+    border: 1px solid var(--border-subtle);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+    overflow: hidden;
 }
 
-.theme-ball {
+/* leggero gradient interno per profondità */
+.toggle-track::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), transparent 55%);
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+[data-theme="dark"] .toggle-track::before {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 55%);
+}
+
+.toggle-thumb {
     position: absolute;
     top: 3px;
-    left: 4px;
-    width: 24px;
-    height: 24px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background-color: var(--toggle-ball);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.35s ease;
+    background: var(--toggle-thumb);
+    color: var(--toggle-icon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.12),
+        0 2px 6px rgba(0, 0, 0, 0.08);
+    transition:
+        transform 0.4s cubic-bezier(0.34, 1.4, 0.5, 1),
+        background-color 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease;
     z-index: 2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-[data-theme="dark"] .theme-ball {
-    transform: translateX(28px);
+[data-theme="dark"] .toggle-thumb {
+    transform: translateX(26px);
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.3);
 }
+
+.toggle-thumb svg {
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.4, 0.5, 1);
+}
+
+.toggle-thumb .icon-sun {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.toggle-thumb .icon-moon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+}
+
+[data-theme="dark"] .toggle-thumb .icon-sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+}
+
+[data-theme="dark"] .toggle-thumb .icon-moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle:hover .toggle-track {
+    border-color: var(--border-strong);
+}
+
+.theme-toggle:focus-visible .toggle-track {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ========================================================= */
 
 .hero {
     min-height: 100vh;
@@ -235,7 +306,7 @@ button {
     background-color: var(--accent);
     border-radius: 50%;
     box-shadow: 0 0 10px var(--accent);
-    transition: background-color 0.35s ease, box-shadow 0.35s ease;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
     animation: pulse 2s ease-in-out infinite;
 }
 
@@ -315,7 +386,7 @@ button {
     color: var(--accent);
     font-weight: 600;
     margin-bottom: 12px;
-    transition: color 0.35s ease;
+    transition: color 0.4s ease;
 }
 
 .section-title {
@@ -329,7 +400,7 @@ button {
 .projects {
     padding: 120px 0;
     border-top: 1px solid var(--border-subtle);
-    transition: border-color 0.35s ease;
+    transition: border-color 0.4s ease;
 }
 
 .projects-list {
@@ -347,7 +418,7 @@ button {
     border: 1px solid var(--border-subtle);
     border-radius: 12px;
     padding: 40px;
-    transition: var(--transition), background-color 0.35s ease, border-color 0.35s ease;
+    transition: var(--transition), background-color 0.4s ease, border-color 0.4s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
     cursor: pointer;
     color: inherit;
@@ -412,7 +483,7 @@ button {
     padding: 14px 18px;
     border-radius: 0 8px 8px 0;
     margin-bottom: 24px;
-    transition: background-color 0.35s ease, border-color 0.35s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .detail-block {
@@ -477,7 +548,7 @@ button {
 .about {
     padding: 120px 0;
     border-top: 1px solid var(--border-subtle);
-    transition: border-color 0.35s ease;
+    transition: border-color 0.4s ease;
 }
 
 .about-grid {
@@ -497,7 +568,7 @@ button {
     margin-top: 48px;
     padding-top: 36px;
     border-top: 1px solid var(--border-subtle);
-    transition: border-color 0.35s ease;
+    transition: border-color 0.4s ease;
 }
 
 .skills-heading {
@@ -518,7 +589,7 @@ button {
     color: var(--accent);
     margin-bottom: 12px;
     font-weight: 600;
-    transition: color 0.35s ease;
+    transition: color 0.4s ease;
 }
 
 .skill-group ul {
@@ -536,7 +607,7 @@ button {
 .contact {
     padding: 120px 0 80px;
     border-top: 1px solid var(--border-subtle);
-    transition: border-color 0.35s ease;
+    transition: border-color 0.4s ease;
 }
 
 .contact-card {
@@ -545,9 +616,8 @@ button {
     border-radius: 16px;
     padding: 60px 40px;
     text-align: center;
-    transition: var(--transition), background-color 0.35s ease, border-color 0.35s ease;
+    transition: var(--transition), background-color 0.4s ease, border-color 0.4s ease;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    /* Importante: impedisce che contenuti troppo larghi allarghino la card */
     overflow: hidden;
 }
 
@@ -567,19 +637,15 @@ button {
     margin-bottom: 40px;
 }
 
-/* =========================================================
-   EMAIL — La dimensione del font viene gestita da JavaScript
-   per garantire che il testo stia SEMPRE su una riga sola.
-   ========================================================= */
 .contact-email {
     display: block;
     font-family: var(--font-heading);
-    font-size: clamp(1rem, 2.5vw, 2.2rem); /* punto di partenza */
+    font-size: clamp(1rem, 2.5vw, 2.2rem);
     font-weight: 700;
     color: var(--text-primary);
     border-bottom: 2px solid var(--accent);
     padding-bottom: 4px;
-    transition: color 0.35s ease, border-color 0.35s ease;
+    transition: color 0.4s ease, border-color 0.4s ease;
     margin-bottom: 60px;
     margin-left: auto;
     margin-right: auto;
@@ -602,7 +668,7 @@ button {
     border-top: 1px solid var(--border-subtle);
     flex-wrap: wrap;
     gap: 20px;
-    transition: border-color 0.35s ease;
+    transition: border-color 0.4s ease;
 }
 
 .contact-socials {
@@ -705,7 +771,6 @@ button {
         padding: 40px 20px;
     }
 
-    /* L'email mantiene nowrap: la dimensione viene gestita da JS */
     .contact-email {
         white-space: nowrap;
         display: block;
@@ -754,14 +819,14 @@ button {
         font-size: 1.1rem;
     }
     .theme-toggle {
-        width: 54px;
+        width: 50px;
         height: 28px;
     }
-    .theme-ball {
+    .toggle-thumb {
         width: 20px;
         height: 20px;
     }
-    [data-theme="dark"] .theme-ball {
-        transform: translateX(24px);
+    [data-theme="dark"] .toggle-thumb {
+        transform: translateX(22px);
     }
 }
